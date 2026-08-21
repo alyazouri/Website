@@ -4,7 +4,7 @@
 // 12 Subnets — Lobby(4) + Match(5)
 // ============================================================
 
-var PROXY  = "PROXY 46.185.131.218:443";
+var PROXY  = "PROXY 109.237.205.83:20001";
 var DIRECT = "DIRECT";
 var BLOCK  = "PROXY 127.0.0.1:1";
 
