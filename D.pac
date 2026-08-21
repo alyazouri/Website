@@ -48,6 +48,8 @@ function isJordanResidential(host) {
 
   return (
 
+    isInNet(host,"46.32.96.0","255.255.224.0") ||
+    isInNet(host,"37.17.192.0","255.255.240.0") ||
     /* Orange / Residential */
 
     isInNet(host,"46.185.128.0","255.255.128.0") ||
