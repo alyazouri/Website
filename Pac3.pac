@@ -1,8 +1,8 @@
 // ============================================================
-// PUBG IPv6 ROTATION LOCK — COMPLETE FUNCTIONS EDITION
-// Round-Robin (60s) | Full Social + Profile + Recruit
-// 12 Subnets | Lobby=FREE | Match=LOCKED(net5)
-// ALL PUBG Functions Included — NO Anti-Cheat Detection
+// PUBG IPv6 ROTATION LOCK — JORDAN PLAYERS FIX
+// Round-Robin (60s) | IPv4=FREE | IPv6=ROTATION
+// 12 Subnets | Lobby=FREE | Match=LOCKED
+// ALL 23 PUBG Functions | FIXED: No Players Issue
 // ============================================================
 
 var PROXY  = "PROXY 46.185.131.218:443";
@@ -103,12 +103,17 @@ function matchIPv6Prefix(ipExpanded, prefixExpanded, prefixLen) {
 }
 
 // ================= ROTATION LOGIC =================
+// لا يدور أثناء الماتش النشط
 
 function getActiveSubnet() {
   var now = new Date().getTime();
 
   if (ROTATION.startTime === 0)
     ROTATION.startTime = now;
+
+  // تجميد الدوران أثناء الماتش
+  if (SESSION.matchActive)
+    return SUBNETS[ROTATION.index];
 
   var elapsed = now - ROTATION.startTime;
 
@@ -126,6 +131,20 @@ function isIPInActiveSubnet(ipExpanded) {
   return matchIPv6Prefix(ipExpanded, subnet.prefix, subnet.len);
 }
 
+// ================= IPv4 NETWORK SEGMENT =================
+
+function getIPv4Net16(ip) {
+  var p = ip.split(".");
+  return p[0] + "." + p[1];
+}
+
+// ================= IPv6 NETWORK SEGMENT =================
+
+function getNet5(ip) {
+  var p = ip.split(":");
+  return p[0] + ":" + p[1] + ":" + p[2] + ":" + p[3] + ":" + p[4];
+}
+
 // ============================================================
 //                    PUBG DOMAIN DETECTION
 // ============================================================
@@ -133,7 +152,7 @@ function isIPInActiveSubnet(ipExpanded) {
 function isPUBG(host) {
   host = host.toLowerCase();
 
-  // ===== العاب Tencent / Krafton =====
+  // العاب Tencent / Krafton
   if (host.indexOf("pubgmobile")      !== -1) return true;
   if (host.indexOf("pubg")            !== -1) return true;
   if (host.indexOf("tencent")         !== -1) return true;
@@ -143,24 +162,22 @@ function isPUBG(host) {
   if (host.indexOf("gpubgm")          !== -1) return true;
   if (host.indexOf("igamecj")         !== -1) return true;
 
-  // ===== خدمات السحابة =====
+  // خدمات السحابة
   if (host.indexOf("gcloud")          !== -1) return true;
   if (host.indexOf("qcloud")          !== -1) return true;
   if (host.indexOf("tmgcloud")        !== -1) return true;
   if (host.indexOf("mycloud")         !== -1) return true;
 
-  // ===== خدمات اجتماعية ومراسلة =====
+  // خدمات اجتماعية
   if (host.indexOf("sns")             !== -1) return true;
-  if (host.indexOf("im")              !== -1) return true;
   if (host.indexOf("push")            !== -1) return true;
 
-  // ===== خدمات الدفع والمتجر =====
+  // خدمات الدفع
   if (host.indexOf("midas")           !== -1) return true;
   if (host.indexOf("tlog")            !== -1) return true;
   if (host.indexOf("awspa")           !== -1) return true;
-  if (host.indexOf("gp")              !== -1) return true;
 
-  // ===== خدمات العاب إضافية =====
+  // خدمات العاب
   if (host.indexOf("proximabeta")     !== -1) return true;
   if (host.indexOf("battlelab")       !== -1) return true;
   if (host.indexOf("gamefeed")        !== -1) return true;
@@ -173,194 +190,130 @@ function isPUBG(host) {
 }
 
 // ============================================================
-//          كل وظائف PUBG — تصنيف شامل
+//          23 PUBG FUNCTION CATEGORIES
 // ============================================================
 
-// ===== 1. الملف الشخصي (Profile) =====
+// 1. الملف الشخصي
 function isProfile(data) {
-  return /profile|playerinfo|player\.info|player\.data|player\.detail|playerprofile|userprofile|userinfo|account\.info|account\.detail|account\.data|accountinfo|basicinfo|personinfo|portrait|avatar|frame|banner|title|badge|namecard|emblem|logo|nickname|username|displayname|level|exp|experience|rp|royalpass|season\.info|season\.data|rank\.info|rank\.data|tier|rating|mmr|stats|statistic|career|history|match\.history|battle\.history|combat\.data|report|overview|summary/i
-    .test(data);
+  return /profile|playerinfo|player\.info|player\.data|player\.detail|playerprofile|userprofile|userinfo|account\.info|account\.detail|account\.data|accountinfo|basicinfo|personinfo|portrait|avatar|frame|banner|title|badge|namecard|emblem|logo|nickname|username|displayname|level|exp|experience|rp|royalpass|season\.info|season\.data|rank\.info|rank\.data|tier|rating|mmr|stats|statistic|career|history|match\.history|battle\.history|combat\.data|report|overview|summary/i.test(data);
 }
 
-// ===== 2. الصداقة (Friends) =====
+// 2. قائمة الأصدقاء
 function isFriends(data) {
-  return /friend|friendlist|friend\.list|friend\.info|friend\.data|friend\.request|friend\.accept|friend\.decline|friend\.reject|friend\.remove|friend\.delete|friend\.block|friend\.unblock|friend\.search|friend\.find|friend\.suggest|friend\.recommend|recent\.player|recent\.played|nearby\.player|nearby\.user|blacklist|blocklist|block\.list|ignore\.list|mute\.list/i
-    .test(data);
+  return /friend|friendlist|friend\.list|friend\.info|friend\.data|friend\.request|friend\.accept|friend\.decline|friend\.reject|friend\.remove|friend\.delete|friend\.block|friend\.unblock|friend\.search|friend\.find|friend\.suggest|friend\.recommend|recent\.player|recent\.played|nearby\.player|nearby\.user|blacklist|blocklist|block\.list|ignore\.list|mute\.list/i.test(data);
 }
 
-// ===== 3. إضافة صديق (Add Friend) =====
+// 3. إضافة صديق
 function isAddFriend(data) {
-  return /addfriend|add\.friend|friendadd|friend\.add|sendrequest|send\.request|follow|unfollow|subscribe|befriend|befriending|addbuddy|buddy\.add|addteammate|companion\.add/i
-    .test(data);
+  return /addfriend|add\.friend|friendadd|friend\.add|sendrequest|send\.request|follow|unfollow|subscribe|befriend|befriending|addbuddy|buddy\.add|addteammate|companion\.add/i.test(data);
 }
 
-// ===== 4. البانر (Banner) =====
+// 4. البانر
 function isBanner(data) {
-  return /banner|frame|background|backdrop|theme|skin\.ui|ui\.skin|lobby\.bg|lobbybg|lobby\.background|lobby\.theme|lobbyframe|lobby\.frame|lobbybanner|lobby\.banner|profile\.banner|profile\.frame|nameplate|plate|border|outline|glow|effect\.ui|ui\.effect/i
-    .test(data);
+  return /banner|frame|background|backdrop|theme|skin\.ui|ui\.skin|lobby\.bg|lobbybg|lobby\.background|lobby\.theme|lobbyframe|lobby\.frame|lobbybanner|lobby\.banner|profile\.banner|profile\.frame|nameplate|plate|border|outline|glow|effect\.ui|ui\.effect/i.test(data);
 }
 
-// ===== 5. ساعات النشاط (Usual Online Hours) =====
+// 5. ساعات النشاط
 function isOnlineHours(data) {
-  return /online\.hours|onlinehours|active\.hours|activehours|play\.time|playtime|game\.time|gametime|session\.time|sessiontime|login\.time|logintime|last\.login|lastlogin|last\.online|lastonline|last\.seen|lastseen|last\.active|lastactive|presence|onlinestatus|online\.status|activity|usetime|usage\.time|daily\.time|dailytime|weekly\.time|weeklytime|hourly|timezone|time\.zone/i
-    .test(data);
+  return /online\.hours|onlinehours|active\.hours|activehours|play\.time|playtime|game\.time|gametime|session\.time|sessiontime|login\.time|logintime|last\.login|lastlogin|last\.online|lastonline|last\.seen|lastseen|last\.active|lastactive|presence|onlinestatus|online\.status|activity|usetime|usage\.time|daily\.time|dailytime|weekly\.time|weeklytime|hourly|timezone|time\.zone/i.test(data);
 }
 
-// ===== 6. اللغة (Language) =====
+// 6. اللغة
 function isLanguage(data) {
-  return /language|lang|locale|localization|i18n|translation|translate|lang\.set|setlang|changelanguage|switchlang|multilingual|langpack|lang\.pack|lang\.data|lang\.list|lang\.option|lang\.config|lang\.settings|languagelist|language\.list|language\.option|language\.settings|language\.config/i
-    .test(data);
+  return /language|lang|locale|localization|i18n|translation|translate|lang\.set|setlang|changelanguage|switchlang|multilingual|langpack|lang\.pack|lang\.data|lang\.list|lang\.option|lang\.config|lang\.settings|languagelist|language\.list|language\.option|language\.settings|language\.config/i.test(data);
 }
 
-// ===== 7. الرتبة / المستوى (Tier) =====
+// 7. الرتبة
 function isTier(data) {
-  return /tier|rank|rating|mmr|elo|division|league|grade|standing|position|leaderboard|leader|top\.player|top\.rank|toplist|rang|stufe|level\.info|level\.data|level\.up|levelup|leveling|progression|progress|milestone|achievement\.rank/i
-    .test(data);
+  return /tier|rank|rating|mmr|elo|division|league|grade|standing|position|leaderboard|leader|top\.player|top\.rank|toplist|rang|stufe|level\.info|level\.data|level\.up|levelup|leveling|progression|progress|milestone|achievement\.rank/i.test(data);
 }
 
-// ===== 8. الجنس (Gender) =====
+// 8. الجنس
 function isGender(data) {
-  return /gender|sex|male|female|character\.type|character\.gender|char\.gender|char\.sex|avatar\.gender|avatar\.sex|player\.gender|player\.sex|user\.gender|user\.sex|account\.gender|account\.sex|body\.type|bodytype|appearance\.gender|appearance\.sex/i
-    .test(data);
+  return /gender|sex|male|female|character\.type|character\.gender|char\.gender|char\.sex|avatar\.gender|avatar\.sex|player\.gender|player\.sex|user\.gender|user\.sex|account\.gender|account\.sex|body\.type|bodytype|appearance\.gender|appearance\.sex/i.test(data);
 }
 
-// ===== 9. الدعوات (Invite) =====
+// 9. الدعوات
 function isInvite(data) {
-  return /invite|invitation|invited|inviting|invite\.send|sendinvite|invite\.accept|acceptinvite|invite\.decline|declineinvite|invite\.cancel|cancelinvite|invite\.reject|rejectinvite|invite\.request|inviterequest|request\.invite|joinrequest|join\.request|asktojoin|ask\.join|apply|application|recruit|recruiting|recruitment|hiring|lookingfor|lfg|lfm|lft|lfs/i
-    .test(data);
+  return /invite|invitation|invited|inviting|invite\.send|sendinvite|invite\.accept|acceptinvite|invite\.decline|declineinvite|invite\.cancel|cancelinvite|invite\.reject|rejectinvite|invite\.request|inviterequest|request\.invite|joinrequest|join\.request|asktojoin|ask\.join|apply|application|recruit|recruiting|recruitment|hiring|lookingfor|lfg|lfm|lft|lfs/i.test(data);
 }
 
-// ===== 10. الفريق / السكواد (Team/Squad/Party) =====
+// 10. الفريق
 function isTeam(data) {
-  return /team|squad|party|group|platoon|squad\.info|squad\.data|squad\.list|squad\.member|squad\.create|squad\.join|squad\.leave|squad\.kick|squad\.disband|squad\.invite|squad\.chat|party\.info|party\.data|party\.list|party\.member|party\.create|party\.join|party\.leave|party\.kick|party\.disband|party\.invite|team\.info|team\.data|team\.list|team\.member|team\.create|team\.join|team\.leave|team\.kick|team\.disband|team\.invite|team\.slot|slot|member\.list|memberlist|roster|lineup|formation/i
-    .test(data);
+  return /team|squad|party|group|platoon|squad\.info|squad\.data|squad\.list|squad\.member|squad\.create|squad\.join|squad\.leave|squad\.kick|squad\.disband|squad\.invite|squad\.chat|party\.info|party\.data|party\.list|party\.member|party\.create|party\.join|party\.leave|party\.kick|party\.disband|party\.invite|team\.info|team\.data|team\.list|team\.member|team\.create|team\.join|team\.leave|team\.kick|team\.disband|team\.invite|team\.slot|slot|member\.list|memberlist|roster|lineup|formation/i.test(data);
 }
 
-// ===== 11. الشات / المراسلة (Chat/Message) =====
+// 11. الشات
 function isChat(data) {
-  return /chat|msg|message|messaging|conversation|inbox|outbox|sendmsg|send\.message|msg\.send|message\.send|recvmsg|recv\.message|msg\.recv|message\.recv|msg\.list|msg\.history|chat\.history|chat\.list|chat\.room|chatroom|chat\.channel|chatchannel|whisper|direct\.message|dm|pm|privatemsg|private\.msg|team\.chat|squad\.chat|all\.chat|voice\.chat|voicemsg|voice\.message|emote|emoji|sticker|quickchat|quick\.chat|canned|preset\.msg|autoreply|auto\.reply/i
-    .test(data);
+  return /chat|msg|message|messaging|conversation|inbox|outbox|sendmsg|send\.message|msg\.send|message\.send|recvmsg|recv\.message|msg\.recv|message\.recv|msg\.list|msg\.history|chat\.history|chat\.list|chat\.room|chatroom|chat\.channel|chatchannel|whisper|direct\.message|dm|pm|privatemsg|private\.msg|team\.chat|squad\.chat|all\.chat|voice\.chat|voicemsg|voice\.message|emote|emoji|sticker|quickchat|quick\.chat|canned|preset\.msg|autoreply|auto\.reply/i.test(data);
 }
 
-// ===== 12. العشيرة / الكلان (Clan) =====
+// 12. الكلان
 function isClan(data) {
-  return /clan|guild|crew|faction|alliance|clan\.info|clan\.data|clan\.list|clan\.member|clan\.create|clan\.join|clan\.leave|clan\.kick|clan\.disband|clan\.invite|clan\.chat|clan\.war|clan\.rank|clan\.level|clan\.exp|clan\.shop|clan\.event|clan\.mission|clan\.badge|clan\.banner|clan\.emblem|clan\.log|guild\.info|guild\.data|guild\.list|guild\.member|guild\.create|guild\.join|guild\.leave|guild\.kick/i
-    .test(data);
+  return /clan|guild|crew|faction|alliance|clan\.info|clan\.data|clan\.list|clan\.member|clan\.create|clan\.join|clan\.leave|clan\.kick|clan\.disband|clan\.invite|clan\.chat|clan\.war|clan\.rank|clan\.level|clan\.exp|clan\.shop|clan\.event|clan\.mission|clan\.badge|clan\.banner|clan\.emblem|clan\.log|guild\.info|guild\.data|guild\.list|guild\.member|guild\.create|guild\.join|guild\.leave|guild\.kick/i.test(data);
 }
 
-// ===== 13. المتجر / الشراء (Store/Shop) =====
+// 13. المتجر
 function isStore(data) {
-  return /store|shop|purchase|buy|buying|cart|checkout|payment|pay|billing|subscribe|subscription|recharge|topup|top\.up|diamond|diamonds|uc|unknown\.cash|silver|coin|coins|gold|coupon|voucher|redeem|redeemcode|redeem\.code|giftcode|gift\.code|promo|promo\.code|promo\.offer|offer|bundle|pack|crate|supply|supply\.crate|premium\.crate|classic\.crate|special\.crate|lucky\.spin|spin|wheel|gacha|draw|scratch|lottery|royale\.pass|rp|rp\.purchase|rp\.mission|rp\.reward|elite|elite\.pass|plus\.pass/i
-    .test(data);
+  return /store|shop|purchase|buy|buying|cart|checkout|payment|pay|billing|subscribe|subscription|recharge|topup|top\.up|diamond|diamonds|uc|unknown\.cash|silver|coin|coins|gold|coupon|voucher|redeem|redeemcode|redeem\.code|giftcode|gift\.code|promo|promo\.code|promo\.offer|offer|bundle|pack|crate|supply|supply\.crate|premium\.crate|classic\.crate|special\.crate|lucky\.spin|spin|wheel|gacha|draw|scratch|lottery|royale\.pass|rp|rp\.purchase|rp\.mission|rp\.reward|elite|elite\.pass|plus\.pass/i.test(data);
 }
 
-// ===== 14. الأحداث / المهمات (Events/Missions) =====
+// 14. الأحداث
 function isEvents(data) {
-  return /event|events|mission|missions|quest|quests|task|tasks|challenge|challenges|achievement|achievements|daily|daily\.mission|daily\.task|daily\.quest|daily\.challenge|weekly|weekly\.mission|weekly\.task|weekly\.quest|weekly\.challenge|season\.mission|season\.task|season\.quest|season\.challenge|special\.event|special\.mission|limited|limited\.time|timed\.event|seasonal|seasonal\.event|bonus|bonus\.event|reward|rewards|claim|redeem\.reward|collect\.reward|milestone|progression|progress|battlepass|battle\.pass/i
-    .test(data);
+  return /event|events|mission|missions|quest|quests|task|tasks|challenge|challenges|achievement|achievements|daily|daily\.mission|daily\.task|daily\.quest|daily\.challenge|weekly|weekly\.mission|weekly\.task|weekly\.quest|weekly\.challenge|season\.mission|season\.task|season\.quest|season\.challenge|special\.event|special\.mission|limited|limited\.time|timed\.event|seasonal|seasonal\.event|bonus|bonus\.event|reward|rewards|claim|redeem\.reward|collect\.reward|milestone|progression|progress|battlepass|battle\.pass/i.test(data);
 }
 
-// ===== 15. الإعدادات (Settings) =====
+// 15. الإعدادات
 function isSettings(data) {
-  return /settings|setting|config|configuration|option|options|preference|preferences|sensitivity|control|controls|layout|hud|graphic|graphics|audio|sound|voice|display|screen|resolution|fps|quality|customize|customization|custom\.match|custom\.room|room\.create|room\.join|room\.info|room\.data|room\.list|room\.settings|room\.config|create\.room|join\.room/i
-    .test(data);
+  return /settings|setting|config|configuration|option|options|preference|preferences|sensitivity|control|controls|layout|hud|graphic|graphics|audio|sound|voice|display|screen|resolution|fps|quality|customize|customization|custom\.match|custom\.room|room\.create|room\.join|room\.info|room\.data|room\.list|room\.settings|room\.config|create\.room|join\.room/i.test(data);
 }
 
-// ===== 16. التحديث / الباتش (Update/Patch) =====
+// 16. التحديث
 function isUpdate(data) {
-  return /update|patch|download|cdn|version|ver\.check|version\.check|hotfix|hotfixes|maintenance|announce|announcement|news|notice|notices|bulletin|bulletins|info\.notice|push\.notice|system\.notice|important\.notice|patch\.notes|update\.notes|changelog|change\.log|release\.notes/i
-    .test(data);
+  return /update|patch|download|cdn|version|ver\.check|version\.check|hotfix|hotfixes|maintenance|announce|announcement|news|notice|notices|bulletin|bulletins|info\.notice|push\.notice|system\.notice|important\.notice|patch\.notes|update\.notes|changelog|change\.log|release\.notes/i.test(data);
 }
 
-// ===== 17. الإشعارات (Notifications) =====
+// 17. الإشعارات
 function isNotification(data) {
-  return /notify|notification|notifications|alert|alerts|notice|push\.notice|push\.alert|push\.notify|badge\.count|unread|un\.read|bell|inbox\.count|msg\.count|mail|mailbox|mail\.box|mail\.list|mail\.read|mail\.claim|mail\.delete|mail\.send|gift\.mail|system\.mail|event\.mail|reward\.mail/i
-    .test(data);
+  return /notify|notification|notifications|alert|alerts|notice|push\.notice|push\.alert|push\.notify|badge\.count|unread|un\.read|bell|inbox\.count|msg\.count|mail|mailbox|mail\.box|mail\.list|mail\.read|mail\.claim|mail\.delete|mail\.send|gift\.mail|system\.mail|event\.mail|reward\.mail/i.test(data);
 }
 
-// ===== 18. البث / المشاهدة (Stream/Watch/Spectate) =====
+// 18. البث
 function isStream(data) {
-  return /stream|streaming|streamer|broadcast|watch|spectate|spectator|replay|highlight|clip|video|recording|record|live|livestream|live\.stream|esports|tournament|competitive/i
-    .test(data);
+  return /stream|streaming|streamer|broadcast|watch|spectate|spectator|replay|highlight|clip|video|recording|record|live|livestream|live\.stream|esports|tournament|competitive/i.test(data);
 }
 
-// ===== 19. السيرفر / المنطقة (Server/Region) =====
+// 19. السيرفر
 function isRegion(data) {
-  return /server|region|area|zone|location|server\.list|server\.info|server\.data|server\.select|server\.change|switch\.server|change\.server|server\.status|ping\.check|ping\.test|latency|network\.test|connection\.test|server\.ping/i
-    .test(data);
+  return /server|region|area|zone|location|server\.list|server\.info|server\.data|server\.select|server\.change|switch\.server|change\.server|server\.status|ping\.check|ping\.test|latency|network\.test|connection\.test|server\.ping/i.test(data);
 }
 
-// ===== 20. البحث (Search) =====
+// 20. البحث
 function isSearch(data) {
-  return /search|find|lookup|query|search\.player|player\.search|search\.user|user\.search|search\.friend|friend\.search|search\.team|team\.search|search\.clan|clan\.search|search\.room|room\.search|search\.match|match\.search|discover|browse|recommend|suggestion|suggest|nearby|global\.search|world\.search/i
-    .test(data);
+  return /search|find|lookup|query|search\.player|player\.search|search\.user|user\.search|search\.friend|friend\.search|search\.team|team\.search|search\.clan|clan\.search|search\.room|room\.search|search\.match|match\.search|discover|browse|recommend|suggestion|suggest|nearby|global\.search|world\.search/i.test(data);
 }
 
-// ===== 21. الأزياء / السكنات (Outfits/Skins) =====
+// 21. السكنات
 function isOutfit(data) {
-  return /outfit|skin|skins|cosmetic|cosmetics|wardrobe|closet|inventory|items|item\.list|item\.data|item\.info|equip|equipment|equip\.item|unequip|wear|wearable|clothing|dress|hat|helmet|backpack|parachute|pan|gun\.skin|weapon\.skin|vehicle\.skin|vehicle\.customize|emote|emotes|gesture|gestures|dance|dances|pose|poses|spray|sprays|spraypaint|finish|finishing\.move|crate\.item|supply\.item|set\.item|collection|collect/i
-    .test(data);
+  return /outfit|skin|skins|cosmetic|cosmetics|wardrobe|closet|inventory|items|item\.list|item\.data|item\.info|equip|equipment|equip\.item|unequip|wear|wearable|clothing|dress|hat|helmet|backpack|parachute|pan|gun\.skin|weapon\.skin|vehicle\.skin|vehicle\.customize|emote|emotes|gesture|gestures|dance|dances|pose|poses|spray|sprays|spraypaint|finish|finishing\.move|crate\.item|supply\.item|set\.item|collection|collect/i.test(data);
 }
 
-// ===== 22. الأصدقاء المقترحين (Suggested Friends) =====
+// 22. الأصدقاء المقترحين
 function isSuggested(data) {
-  return /suggest|suggested|recommend|recommended|people\.you\.may\.know|may\.know|mutual|mutual\.friend|contacts|contact|sync|sync\.contact|import\.contact|phone\.contact|facebook\.friend|google\.friend|apple\.friend|social\.connect|social\.bind|social\.link|bind|bindaccount|linkaccount|connect\.account/i
-    .test(data);
+  return /suggest|suggested|recommend|recommended|people\.you\.may\.know|may\.know|mutual|mutual\.friend|contacts|contact|sync|sync\.contact|import\.contact|phone\.contact|facebook\.friend|google\.friend|apple\.friend|social\.connect|social\.bind|social\.link|bind|bindaccount|linkaccount|connect\.account/i.test(data);
 }
 
-// ===== 23. تقييم اللاعب (Rate/Report) =====
+// 23. التقييم
 function isRateReport(data) {
-  return /rate|rating|like|likes|thumbs|upvote|downvote|vote|report|flag|complain|complaint|feedback|review|reviews|survey|like\.player|rate\.player|report\.player|feedback\.submit|report\.submit|abuse|harass|cheating\.report|toxic|penalty|sanction|punish|ban|restrict|restrict|violation/i
-    .test(data);
+  return /rate|rating|like|likes|thumbs|upvote|downvote|vote|report|flag|complain|complaint|feedback|review|reviews|survey|like\.player|rate\.player|report\.player|feedback\.submit|report\.submit|abuse|harass|cheating\.report|toxic|penalty|sanction|punish|ban|restrict|violation/i.test(data);
 }
 
 // ============================================================
-//              MATCH DETECTION (مقفل بـ net5)
+//              MATCH DETECTION (مقفل)
 // ============================================================
 
 function isMatch(data) {
-  return /match\.|matchmaking|matchmake|matching|queue\.match|match\.queue|match\.start|match\.end|match\.finish|match\.result|match\.reward|battle\.|battlefield|battlehost|classic\.|ranked\.|arena\.|tdm\.|royale\.|war\.|payload\.|metro\.|zombie\.|zombiemode|gamesvr|game\.server|relay\.|combat\.|survival\.|spectate\.|gameplay\.|ingame\.|deathcam|killcam|parachute\.land|airdrop\.|loot\.|pick\.up|pickup|drop\.item|dropitem|equip\.gun|reload\.gun|shoot\.gun|aim\.gun|scope\.gun|heal\.|revive\.|knock|knocked|crouch|prone|crawl|swim|drive|vehicle\.drive|enter\.vehicle|exit\.vehicle|gas\.zone|bluezone|safezone|playzone|circle\.shrink|alive\.count|kill\.count|killfeed|kill\.feed|kill\.log|damage\.log|loot\.box|airdrop|supply\.drop|flaredrop|carepackage/i
-    .test(data);
-}
-
-// ============================================================
-//              تصنيف كل الوظائف — فقط الماتش مقفل
-// ============================================================
-
-function isAnyFunction(data) {
-  if (isProfile(data))       return true;
-  if (isFriends(data))       return true;
-  if (isAddFriend(data))     return true;
-  if (isBanner(data))        return true;
-  if (isOnlineHours(data))   return true;
-  if (isLanguage(data))      return true;
-  if (isTier(data))          return true;
-  if (isGender(data))        return true;
-  if (isInvite(data))        return true;
-  if (isTeam(data))          return true;
-  if (isChat(data))          return true;
-  if (isClan(data))          return true;
-  if (isStore(data))         return true;
-  if (isEvents(data))        return true;
-  if (isSettings(data))      return true;
-  if (isUpdate(data))        return true;
-  if (isNotification(data))  return true;
-  if (isStream(data))        return true;
-  if (isRegion(data))        return true;
-  if (isSearch(data))        return true;
-  if (isOutfit(data))        return true;
-  if (isSuggested(data))     return true;
-  if (isRateReport(data))    return true;
-  return false;
-}
-
-// ============================================================
-//                     NETWORK SEGMENTS
-// ============================================================
-
-function getNet5(ip) {
-  var p = ip.split(":");
-  return p[0] + ":" + p[1] + ":" + p[2] + ":" + p[3] + ":" + p[4];
+  return /match\.|matchmaking|matchmake|matching|queue\.match|match\.queue|match\.start|match\.end|match\.finish|match\.result|match\.reward|battle\.|battlefield|battlehost|classic\.|ranked\.|arena\.|tdm\.|royale\.|war\.|payload\.|metro\.|zombie\.|zombiemode|gamesvr|game\.server|relay\.|combat\.|survival\.|spectate\.|gameplay\.|ingame\.|deathcam|killcam|parachute\.land|airdrop\.|loot\.|pick\.up|pickup|drop\.item|dropitem|equip\.gun|reload\.gun|shoot\.gun|aim\.gun|scope\.gun|heal\.|revive\.|knock|knocked|crouch|prone|crawl|swim|drive|vehicle\.drive|enter\.vehicle|exit\.vehicle|gas\.zone|bluezone|safezone|playzone|circle\.shrink|alive\.count|kill\.count|killfeed|kill\.feed|kill\.log|damage\.log|loot\.box|airdrop|supply\.drop|flaredrop|carepackage/i.test(data);
 }
 
 // ============================================================
@@ -369,30 +322,65 @@ function getNet5(ip) {
 
 function FindProxyForURL(url, host) {
 
+  // تجاهل النطاقات المحلية
   if (isPlainHostName(host))
     return DIRECT;
 
+  // فقط PUBG
   if (!isPUBG(host))
     return DIRECT;
 
+  // حل اسم المضيف
   var ip = dnsResolve(host);
 
   if (!ip)
     return PROXY;
 
-  var fullIP = ip;
+  var data  = (host + url).toLowerCase();
+  var match = isMatch(data);
 
-  if (isIPv6(ip))
-    fullIP = expandIPv6(ip);
+  // ==========================================================
+  //  IPv4: كل شي يمر عبر البروكسي الأردني
+  //  dnsResolve يرجع IPv4 دائماً — لا نحظره!
+  // ==========================================================
+  if (!isIPv6(ip)) {
 
-  // فلترة: IPv6 فقط + النطاق النشط فقط
-  if (!isIPv6(fullIP) || !isIPInActiveSubnet(fullIP))
+    // قفل الماتش على شبكة IPv4 واحدة (/16)
+    if (match) {
+      var net16 = getIPv4Net16(ip);
+
+      if (!SESSION.matchNet) {
+        SESSION.matchNet    = net16;
+        SESSION.matchActive = true;
+      }
+
+      if (net16 !== SESSION.matchNet)
+        return BLOCK;
+
+      return PROXY;
+    }
+
+    // خروج من الماتش
+    if (SESSION.matchActive) {
+      SESSION.matchNet    = null;
+      SESSION.matchActive = false;
+    }
+
+    // كل شي ثاني (لובי / تجنيد / دعوات / بروفايل) = حراً
+    return PROXY;
+  }
+
+  // ==========================================================
+  //  IPv6: دوران + قفل الماتش
+  // ==========================================================
+  var fullIP = expandIPv6(ip);
+
+  // فلترة: النطاق النشط فقط
+  if (!isIPInActiveSubnet(fullIP))
     return BLOCK;
 
-  var data = (host + url).toLowerCase();
-
-  // ===== MATCH ONLY = مقفل بـ net5 =====
-  if (isMatch(data)) {
+  // قفل الماتش على شبكة IPv6 واحدة (net5)
+  if (match) {
     var net5 = getNet5(fullIP);
 
     if (!SESSION.matchNet) {
@@ -406,13 +394,7 @@ function FindProxyForURL(url, host) {
     return PROXY;
   }
 
-  // ===== كل وظائف PUBG = حراً بالكامل =====
-  // 23 وظيفة: بروفايل + أصدقاء + بانر + ساعات +
-  //           لغة + رتبة + جنس + دعوات + فريق +
-  //           شات + كلان + متجر + أحداث + إعدادات +
-  //           تحديث + إشعارات + بث + سيرفر + بحث +
-  //           سكنات + اقتراحات + تقييم + أي شي ثاني
-
+  // خروج من الماتش
   if (SESSION.matchActive) {
     SESSION.matchNet    = null;
     SESSION.matchActive = false;
