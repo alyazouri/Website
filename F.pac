@@ -1,22 +1,25 @@
 /* =========================================================
-   T | JORDAN TITANIUM CORE V5 [UNIFIED EDITION]
-   🎮 PUBG MOBILE — MAX DETECTION / UNIFIED ROUTING
-   🇯🇴 Jordan Residential Priority
-   🔒 Zero DIRECT (Except Profile Pics)
-   ⚡ DNS-Lag Prevention / Matchmaking Isolation
+   T | JORDAN TITANIUM CORE V7 [AMMAN EDITION]
+   🎮 PUBG MOBILE — JORDANIAN PROXY / AMMAN SERVERS
+   🇯🇴 Jordan IP = Jordan Servers
+   🔒 Zero DIRECT
+   ⚡ DNS-Lag Prevention
+   🏆 Matchmaking → Jordanian Proxy (Amman)
    ========================================================= */
 
 
 /* =========================================================
    🌐 PROXY DEFINITIONS
    ========================================================= */
-var PROXY_A = "PROXY 85.159.217.18:80";   // 🏆 GOLDEN: Matchmaking & Core
-var PROXY_B = "PROXY 85.159.217.18:443";  // 🔄 FALLBACK
-var PROXY_C = "PROXY 92.253.2.100:8080";  // 🔄 FALLBACK
+var PROXY_JO1 = "PROXY 109.237.197.184:20001";  // 🇯🇴 JORDANIAN #1 (Amman) — PRIMARY
+var PROXY_JO2 = "PROXY 92.253.22.123:443";      // 🇯🇴 JORDANIAN #2 (Amman) — SECONDARY
+var PROXY_A   = "PROXY 85.159.217.18:80";       // 🔄 FALLBACK 1
+var PROXY_B   = "PROXY 85.159.217.18:443";      // 🔄 FALLBACK 2
+var PROXY_C   = "PROXY 92.253.2.100:8080";      // 🔄 FALLBACK 3
 
 
 /* =========================================================
-   ⚡ ULTRA HASH (Deterministic Fallback)
+   ⚡ ULTRA HASH
    ========================================================= */
 function ultraHash(str) {
   var h = 2166136261;
@@ -103,6 +106,25 @@ function isPlayerProfilePicture(url) {
 
 
 /* =========================================================
+   🎮 PUBG — MATCHMAKING DETECTION
+   ========================================================= */
+function isMatchmakingTraffic(s) {
+  return (
+    /matchmaking/.test(s) || /matchmaker/.test(s) ||
+    /match\/find/.test(s) || /match\/start/.test(s) ||
+    /match\/join/.test(s) || /match\/queue/.test(s) ||
+    /match\/ready/.test(s) || /match\/confirm/.test(s) ||
+    /serverlist/.test(s) || /server-list/.test(s) ||
+    /realm/.test(s) || /region/.test(s) || /routing/.test(s) ||
+    /discover/.test(s) || /ping/.test(s) || /latency/.test(s) ||
+    /allocation/.test(s) || /dispatcher/.test(s) ||
+    /sessionserver/.test(s) || /session-server/.test(s) ||
+    /matchserver/.test(s) || /match-server/.test(s)
+  );
+}
+
+
+/* =========================================================
    🎮 PUBG — DIRECT IDENTIFIERS
    ========================================================= */
 function isPUBGDirect(s) {
@@ -139,7 +161,7 @@ function isPUBGInfra(s) {
 
 
 /* =========================================================
-   🎮 PUBG — GAME SERVICES (12+ Patterns)
+   🎮 PUBG — GAME SERVICES
    ========================================================= */
 function isPUBGService(s) {
   return (
@@ -156,7 +178,7 @@ function isPUBGService(s) {
 
 
 /* =========================================================
-   🎮 PUBG — MAP / GAME MODE (10+ Patterns)
+   🎮 PUBG — MAP / GAME MODE
    ========================================================= */
 function isPUBGMode(s) {
   return (
@@ -221,7 +243,6 @@ function getPUBGScore(host, url) {
   if (isPUBGResource(s, u))   score += 30;
   if (isPUBGInfra(s))         score += 25;
 
-  // Generic game keywords (weak signals)
   if (/match/.test(s) && /(game|session|battle|server)/.test(s)) score += 15;
   if (/battle/.test(s) && /(game|match|session|server)/.test(s)) score += 15;
 
@@ -234,54 +255,67 @@ function isPUBG(host, url) {
 
 
 /* =========================================================
-   🔒 STICKY CORE (Matchmaking Lock)
+   🔒 STICKY CORE (Jordanian Proxy Priority)
    ========================================================= */
 var LOCKED_CORE = null;
 
 function selectCore(host) {
   if (LOCKED_CORE !== null) return LOCKED_CORE;
 
-  // Only check IP tiers if host is raw IP (Prevents DNS Lag)
-  if (isIP(host)) {
-    var tier = regionTier(host);
-    if (tier >= 2) {
-      LOCKED_CORE = PROXY_A;
-      return LOCKED_CORE;
-    }
-  }
-
-  // Deterministic fallback for domains/unknown IPs
-  var hash = ultraHash(host);
-  LOCKED_CORE = (hash % 3 === 0) ? PROXY_A : (hash % 3 === 1) ? PROXY_B : PROXY_C;
+  // Always prefer Jordanian proxy
+  LOCKED_CORE = PROXY_JO1;
   return LOCKED_CORE;
 }
 
 
 /* =========================================================
-   🚀 MAIN PAC ENGINE (V5 Unified)
+   🔄 FAILOVER (If primary fails, try secondary)
+   ========================================================= */
+function getJordanianProxy() {
+  // Primary Jordanian proxy
+  return PROXY_JO1;
+}
+
+function getJordanianFallback() {
+  // Secondary Jordanian proxy
+  return PROXY_JO2;
+}
+
+
+/* =========================================================
+   🚀 MAIN PAC ENGINE (V7 — AMMAN EDITION)
    ========================================================= */
 function FindProxyForURL(url, host) {
   host = host || "";
   url = url || "";
   var s = (host + " " + url).toLowerCase();
 
-  // 1️⃣ 🖼️ PROFILE PICTURES -> DIRECT
+  /* =====================================================
+     1️⃣ 🖼️ PROFILE PICTURES -> DIRECT
+     ===================================================== */
   if (isPlayerProfilePicture(url)) {
     return "DIRECT";
   }
 
-  // 2️⃣ 🎮 PUBG DETECTION & ROUTING
+  /* =====================================================
+     2️⃣ 🎮 MATCHMAKING → JORDANIAN PROXY
+     =====================================================
+     PUBG بيشوف IP أردني
+     → بيحطك بسيرفر أردني / عربي
+     ===================================================== */
+  if (isMatchmakingTraffic(s)) {
+    return getJordanianProxy();
+  }
+
+  /* =====================================================
+     3️⃣ 🎮 PUBG GAMEPLAY → JORDANIAN PROXY
+     ===================================================== */
   if (isPUBG(host, url)) {
-
-    // ⚡ MATCHMAKING ISOLATION -> PROXY_A (GOLDEN)
-    if (/(\/matchmaking\/|\/matchmaker\/|\/api\/.*match|\/dispatcher\/|\/allocation\/)/.test(url)) {
-      return LOCKED_CORE || PROXY_A;
-    }
-
-    // 🏆 CORE GAMEPLAY -> STICKY PROXY
     return selectCore(host);
   }
 
-  // 3️⃣ 🌐 EVERYTHING ELSE -> STICKY PROXY (Zero DIRECT)
+  /* =====================================================
+     4️⃣ 🌐 EVERYTHING ELSE → JORDANIAN PROXY
+     ===================================================== */
   return selectCore(host);
 }
