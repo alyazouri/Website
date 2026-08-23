@@ -41,55 +41,57 @@ function ultraHash(str) {
 
 
 /* =========================================================
-   🇯🇴 JORDAN — PRIMARY RESIDENTIAL
+   🇯🇴 JORDAN — PRIMARY RESIDENTIAL (/17 إلى /19)
    ========================================================= */
 
 function isJordanResidential(host) {
 
   return (
-
-    isInNet(host,"92.253.0.0","255.255.128.0") ||
-    isInNet(host,"37.202.64.0","255.255.192.0") ||
-    isInNet(host,"46.32.96.0","255.255.224.0") ||
     isInNet(host,"84.18.32.0","255.255.224.0") ||
+    isInNet(host,"37.202.64.0","255.255.192.0") ||
+    isInNet(host,"92.253.0.0","255.255.128.0") ||
+    isInNet(host,"46.32.96.0","255.255.224.0") ||
     isInNet(host,"91.186.224.0","255.255.224.0") ||
     isInNet(host,"176.57.0.0","255.255.224.0") ||
-    isInNet(host,"212.35.64.0","255.255.224.0") ||
-    isInNet(host,"37.17.192.0","255.255.240.0")
+    isInNet(host,"212.35.64.0","255.255.224.0")
   );
 }
 
 
 /* =========================================================
-   🇯🇴 JORDAN — EXTENDED RESIDENTIAL
+   🇯🇴 JORDAN — EXTENDED RESIDENTIAL (/20 إلى /21)
    ========================================================= */
 
 function isJordanExtended(host) {
 
   return (
 
+    /* /20 */
+    isInNet(host,"37.17.192.0","255.255.240.0") ||
     isInNet(host,"77.245.0.0","255.255.240.0") ||
     isInNet(host,"80.10.64.0","255.255.240.0") ||
     isInNet(host,"95.141.208.0","255.255.240.0") ||
     isInNet(host,"109.237.192.0","255.255.240.0") ||
     isInNet(host,"217.23.32.0","255.255.240.0") ||
+
+    /* /21 */
     isInNet(host,"5.198.240.0","255.255.248.0") ||
-    isInNet(host,"87.236.232.0","255.255.248.0")
+    isInNet(host,"87.236.232.0","255.255.248.0") ||
+    isInNet(host,"141.0.0.0","255.255.248.0") ||
+    isInNet(host,"176.241.64.0","255.255.248.0") ||
+    isInNet(host,"188.247.72.0","255.255.248.0")
   );
 }
 
 
 /* =========================================================
-   🇯🇴 JORDAN — SMALL RESIDENTIAL NETWORKS
+   🇯🇴 JORDAN — SMALL RESIDENTIAL NETWORKS (/22 إلى /32)
    ========================================================= */
 
 function isJordanSmallResidential(host) {
 
   return (
 
-    isInNet(host,"141.0.0.0","255.255.248.0") ||
-    isInNet(host,"176.241.64.0","255.255.248.0") ||
-    isInNet(host,"188.247.72.0","255.255.248.0") ||
     isInNet(host,"185.12.244.0","255.255.252.0") ||
     isInNet(host,"185.51.212.0","255.255.252.0") ||
     isInNet(host,"185.80.104.0","255.255.252.0") ||
@@ -276,7 +278,7 @@ function isPUBGServerDiscovery(s,u) {
 
   return (
 
-    /(serverlist|server-list|serverlist|realm|routing)/.test(u) &&
+    /(serverlist|server-list|realm|routing)/.test(u) &&
 
     /(game|match|player|pubg|pubgm|tencent|krafton)/.test(s)
   );
@@ -314,58 +316,37 @@ function getPUBGScore(host,url) {
 
   var score = 0;
 
-  /* Direct PUBG */
-
   if (isPUBGDirect(s)) {
     score += 100;
   }
-
-  /* Publisher */
 
   if (isPUBGPublisher(s)) {
     score += 85;
   }
 
-  /* Game infrastructure */
-
   if (isPUBGInfra(s)) {
     score += 25;
   }
-
-  /* Match / session infrastructure */
 
   if (isPUBGService(s)) {
     score += 70;
   }
 
-  /* Game modes */
-
   if (isPUBGMode(s)) {
     score += 45;
   }
-
-  /* API */
 
   if (isPUBGAPI(u)) {
     score += 35;
   }
 
-  /* Server discovery */
-
   if (isPUBGServerDiscovery(s,u)) {
     score += 40;
   }
 
-  /* Resources */
-
   if (isPUBGResource(s,u)) {
     score += 30;
   }
-
-  /*
-     Generic game keywords are intentionally weak.
-     This prevents unrelated games from being routed.
-  */
 
   if (
     /match/.test(s) &&
@@ -391,10 +372,6 @@ function getPUBGScore(host,url) {
 
 function isPUBG(host,url) {
 
-  /*
-     60+ = strong confidence
-  */
-
   return getPUBGScore(host,url) >= 60;
 }
 
@@ -412,22 +389,11 @@ var LOCKED_CORE = null;
 
 function selectCore(host,url) {
 
-  /*
-     Once selected:
-     NEVER switch during PAC lifetime.
-  */
-
   if (LOCKED_CORE !== null) {
     return LOCKED_CORE;
   }
 
-
   var tier = regionTier(host);
-
-
-  /* =======================================================
-     🇯🇴 TIER 3 — PRIMARY JORDAN
-     ======================================================= */
 
   if (tier === 3) {
 
@@ -436,11 +402,6 @@ function selectCore(host,url) {
     return LOCKED_CORE;
   }
 
-
-  /* =======================================================
-     🇯🇴 TIER 2 — EXTENDED JORDAN
-     ======================================================= */
-
   if (tier === 2) {
 
     LOCKED_CORE = PROXY_A;
@@ -448,17 +409,11 @@ function selectCore(host,url) {
     return LOCKED_CORE;
   }
 
-
-  /* =======================================================
-     🌍 UNKNOWN — DETERMINISTIC FALLBACK
-     ======================================================= */
-
   var hash = ultraHash(
     host + "|" + url
   );
 
   var selector = hash % 3;
-
 
   if (selector === 0) {
 
@@ -473,7 +428,6 @@ function selectCore(host,url) {
     LOCKED_CORE = PROXY_C;
   }
 
-
   return LOCKED_CORE;
 }
 
@@ -483,11 +437,6 @@ function selectCore(host,url) {
    ========================================================= */
 
 function selectNonPUBGCore() {
-
-  /*
-     Zero DIRECT.
-     Primary proxy remains sticky.
-  */
 
   return PROXY_A;
 }
@@ -499,27 +448,13 @@ function selectNonPUBGCore() {
 
 function FindProxyForURL(url,host) {
 
-  /*
-     Normalize
-  */
-
   host = host || "";
   url = url || "";
-
-
-  /* =======================================================
-     🎮 PUBG
-     ======================================================= */
 
   if (isPUBG(host,url)) {
 
     return selectCore(host,url);
   }
-
-
-  /* =======================================================
-     🌐 EVERYTHING ELSE
-     ======================================================= */
 
   return selectNonPUBGCore();
 }
