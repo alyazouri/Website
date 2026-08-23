@@ -1,7 +1,7 @@
 /* =========================================================
    T | JORDAN TITANIUM CORE
    🎮 PUBG MOBILE — MAX DETECTION / STICKY ROUTING
-   🇯🇴 Jordan Residential Priority
+   🇯🇴 Jordan Residential Priority (IPv4 + IPv6)
    🔒 Zero DIRECT
    ⚡ Fast PAC-compatible logic
    ========================================================= */
@@ -41,7 +41,7 @@ function ultraHash(str) {
 
 
 /* =========================================================
-   🇯🇴 JORDAN — PRIMARY RESIDENTIAL
+   🇯🇴 JORDAN — PRIMARY RESIDENTIAL (IPv4)
    ========================================================= */
 
 function isJordanResidential(host) {
@@ -76,7 +76,7 @@ function isJordanResidential(host) {
 
 
 /* =========================================================
-   🇯🇴 JORDAN — EXTENDED RESIDENTIAL
+   🇯🇴 JORDAN — EXTENDED RESIDENTIAL (IPv4)
    ========================================================= */
 
 function isJordanExtended(host) {
@@ -115,7 +115,7 @@ function isJordanExtended(host) {
 
 
 /* =========================================================
-   🇯🇴 JORDAN — SMALL RESIDENTIAL NETWORKS
+   🇯🇴 JORDAN — SMALL RESIDENTIAL NETWORKS (IPv4)
    ========================================================= */
 
 function isJordanSmallResidential(host) {
@@ -141,16 +141,45 @@ function isJordanSmallResidential(host) {
 
 
 /* =========================================================
+   🇯🇴 JORDAN — IPV6 RESIDENTIAL / ISP RANGES
+   ========================================================= */
+
+function isJordanIPv6(host) {
+
+  return (
+    /* Orange Jordan */
+    isInNet(host,"2a01:9700::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+
+    /* Umniah */
+    isInNet(host,"2a00:4620::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
+    isInNet(host,"2a05:7500::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+    isInNet(host,"2a02:f0c0::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+    isInNet(host,"2a03:6d00::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
+    isInNet(host,"2a03:b640::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
+    isInNet(host,"2a05:74c0::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+
+    /* Zain Jordan / Fastlink */
+    isInNet(host,"2a13:8d40::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+
+    /* Starlink Jordan */
+    isInNet(host,"2a0d:3344:37c0::","ffff:ffff:ffc0:0000:0000:0000:0000:0000") ||
+
+    /* Blink */
+    isInNet(host,"2a02:25d8::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
+
+    /* DAMAMAX */
+    isInNet(host,"2a00:18d0::","ffff:ffff:0000:0000:0000:0000:0000:0000")
+  );
+}
+
+
+/* =========================================================
    📊 JORDAN TIER
    ========================================================= */
 
 function regionTier(host) {
 
-  if (isJordanResidential(host)) {
-    return 3;
-  }
-
-  if (isJordanSmallResidential(host)) {
+  if (isJordanResidential(host) || isJordanSmallResidential(host) || isJordanIPv6(host)) {
     return 3;
   }
 
