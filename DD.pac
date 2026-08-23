@@ -13,8 +13,8 @@
    ========================================================= */
 
 var JORDAN_CORE   = "PROXY 85.159.217.18:80";   // Primary — Best for Jordan presence & low ping
-var PROXY_B       = "PROXY 94.142.42.162:80";   // Fallback only
-var PROXY_C       = "PROXY 92.253.92.171:80";   // Fallback only
+var PROXY_B       = "PROXY 194.165.133.85:443";   // Fallback only
+var PROXY_C       = "PROXY 94.142.42.162:80";   // Fallback only
 
 
 /* =========================================================
