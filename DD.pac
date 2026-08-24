@@ -1,10 +1,15 @@
 /* =========================================================
-   T | JORDAN TITANIUM ULTRA v2
+   T | JORDAN TITANIUM ULTRA v2.1 — LINKED BUILD
    🎮 PUBG MOBILE — MAX JORDAN PRESENCE + ULTRA LOW PING
    🇯🇴 Zero Jitter / Sticky Jordan Core / Fastest Matchmaking
    🔒 Zero DIRECT — 100% Proxied
    ⚡ Optimized for Jordan Residential (IPv4 + IPv6)
    📌 Best paired with Orange/Umniah DNS for maximum local players
+   ------------------------------------------------------------
+   🔗 v2.1 — الجديد: ربط كشف PUBG مباشرة مع:
+      1) 🇯🇴 JORDAN PRIMARY RESIDENTIAL (IPv4) — isJordanResidential()
+      2) 🇯🇴 JORDAN IPV6 RESIDENTIAL / ISP — isJordanIPv6()
+      عبر دالة موحدة isJordanNet() + مسار سريع داخل محرك التوجيه
    ========================================================= */
 
 
@@ -13,7 +18,7 @@
    ========================================================= */
 
 var JORDAN_CORE   = "PROXY 85.159.217.18:80";   // Primary — Best for Jordan presence & low ping
-var PROXY_B       = "PROXY 194.165.133.85:443";   // Fallback only
+var PROXY_B       = "PROXY 194.165.133.85:443"; // Fallback only
 var PROXY_C       = "PROXY 94.142.42.162:80";   // Fallback only
 
 
@@ -37,29 +42,12 @@ function ultraHash(str) {
 
 function isJordanResidential(host) {
   return (
-    isInNet(host,"194.165.128.0","255.255.224.0") ||
-    isInNet(host,"79.134.128.0","255.255.224.0") ||
+    // ZAIN — Residential / Mobile — HIGH PRIORITY
+    isInNet(host,"176.28.128.0","255.255.128.0") ||
     isInNet(host,"46.32.96.0","255.255.224.0") ||
-    isInNet(host,"37.17.192.0","255.255.240.0") ||
-
-    /* Orange Jordan Residential (highest priority) */
-    isInNet(host,"46.185.128.0","255.255.128.0") ||
-    isInNet(host,"86.108.0.0","255.255.128.0") ||
-    isInNet(host,"92.253.0.0","255.255.128.0") ||
-    isInNet(host,"94.249.0.0","255.255.128.0") ||
-    isInNet(host,"149.200.128.0","255.255.128.0") ||
-
-    /* Umniah / Major Residential */
-    isInNet(host,"37.202.64.0","255.255.192.0") ||
     isInNet(host,"94.142.32.0","255.255.224.0") ||
-    isInNet(host,"79.173.192.0","255.255.192.0") ||
-
-    isInNet(host,"213.186.160.0","255.255.224.0") ||
-    isInNet(host,"213.139.32.0","255.255.224.0") ||
-    isInNet(host,"212.34.0.0","255.255.224.0") ||
-    isInNet(host,"84.18.32.0","255.255.224.0") ||
-    isInNet(host,"84.18.64.0","255.255.224.0") ||
-    isInNet(host,"81.28.112.0","255.255.240.0")
+    isInNet(host,"188.247.64.0","255.255.192.0") ||
+    isInNet(host,"176.29.0.0","255.255.0.0")
   );
 }
 
@@ -70,27 +58,22 @@ function isJordanResidential(host) {
 
 function isJordanExtended(host) {
   return (
-    isInNet(host,"176.28.128.0","255.255.128.0") ||
-    isInNet(host,"109.107.224.0","255.255.224.0") ||
-    isInNet(host,"109.237.192.0","255.255.240.0") ||
-    isInNet(host,"95.141.208.0","255.255.240.0") ||
-    isInNet(host,"95.172.192.0","255.255.224.0") ||
-    isInNet(host,"91.106.96.0","255.255.240.0") ||
-    isInNet(host,"93.93.144.0","255.255.248.0") ||
-    isInNet(host,"93.95.200.0","255.255.248.0") ||
-    isInNet(host,"94.127.208.0","255.255.248.0") ||
-    isInNet(host,"176.57.0.0","255.255.224.0") ||
-    isInNet(host,"178.20.184.0","255.255.248.0") ||
-    isInNet(host,"37.17.192.0","255.255.240.0") ||
-    isInNet(host,"37.44.32.0","255.255.248.0") ||
-    isInNet(host,"37.75.144.0","255.255.248.0") ||
-    isInNet(host,"37.123.64.0","255.255.224.0") ||
-    isInNet(host,"46.23.112.0","255.255.240.0") ||
-    isInNet(host,"46.248.192.0","255.255.224.0") ||
-    isInNet(host,"87.236.232.0","255.255.248.0") ||
-    isInNet(host,"87.238.128.0","255.255.248.0") ||
-    isInNet(host,"89.28.216.0","255.255.248.0") ||
-    isInNet(host,"89.38.152.0","255.255.254.0")
+    // ORANGE — Residential / ADSL / Fiber
+    isInNet(host,"86.108.0.0","255.255.128.0") ||
+    isInNet(host,"92.253.0.0","255.255.128.0") ||
+    isInNet(host,"94.249.0.0","255.255.128.0") ||
+    isInNet(host,"46.185.128.0","255.255.128.0") ||
+    isInNet(host,"149.200.128.0","255.255.128.0") ||
+    isInNet(host,"37.202.64.0","255.255.192.0") ||
+    isInNet(host,"79.173.192.0","255.255.192.0") ||
+    isInNet(host,"194.165.128.0","255.255.224.0") ||
+    isInNet(host,"79.134.128.0","255.255.224.0") ||
+    isInNet(host,"213.186.160.0","255.255.224.0") ||
+    isInNet(host,"213.139.32.0","255.255.224.0") ||
+    isInNet(host,"212.34.0.0","255.255.224.0") ||
+    isInNet(host,"84.18.32.0","255.255.224.0") ||
+    isInNet(host,"84.18.64.0","255.255.192.0") ||
+    isInNet(host,"81.28.112.0","255.255.240.0")
   );
 }
 
@@ -101,6 +84,7 @@ function isJordanExtended(host) {
 
 function isJordanSmallResidential(host) {
   return (
+    // ORANGE / SMALLER ASSIGNED BLOCKS
     isInNet(host,"62.72.161.0","255.255.255.0") ||
     isInNet(host,"62.72.162.0","255.255.255.0") ||
     isInNet(host,"62.72.165.0","255.255.255.0") ||
@@ -111,54 +95,84 @@ function isJordanSmallResidential(host) {
     isInNet(host,"62.72.179.0","255.255.255.0") ||
     isInNet(host,"62.72.180.0","255.255.255.0") ||
     isInNet(host,"62.72.184.0","255.255.252.0") ||
-    isInNet(host,"62.72.191.0","255.255.255.0")
+    isInNet(host,"62.72.191.0","255.255.255.0") ||
+    // ZAIN — Additional Residential / Broadband
+    isInNet(host,"80.90.160.0","255.255.240.0") ||
+    isInNet(host,"217.23.32.0","255.255.240.0") ||
+    isInNet(host,"217.29.240.0","255.255.240.0") ||
+    isInNet(host,"188.123.160.0","255.255.224.0") ||
+    isInNet(host,"91.186.224.0","255.255.224.0") ||
+    isInNet(host,"93.191.176.0","255.255.248.0") ||
+    // UMNIAH / BATELCO — Mobile
+    isInNet(host,"5.45.128.0","255.255.240.0") ||
+    isInNet(host,"212.118.0.0","255.255.224.0") ||
+    isInNet(host,"212.35.64.0","255.255.224.0") ||
+    isInNet(host,"185.80.24.0","255.255.252.0") ||
+    isInNet(host,"185.80.104.0","255.255.252.0") ||
+    isInNet(host,"37.152.0.0","255.255.248.0") ||
+    isInNet(host,"85.159.216.0","255.255.248.0")
   );
 }
 
 
 /* =========================================================
    🇯🇴 JORDAN — IPV6 RESIDENTIAL / ISP RANGES (Full)
+   🔧 v2.1: تستخدم isInNetEx إن توفرت (الطريقة الصحيحة لـ IPv6)
+      مع الرجوع إلى isInNet للمحركات القديمة
    ========================================================= */
 
+var JORDAN_V6_RANGES = [
+  /* [prefix, CIDR for isInNetEx, legacy mask for isInNet] */
+  ["2a01:9700::",      19, "ffff:ffe0:0000:0000:0000:0000:0000:0000"],
+  ["2a00:4620::",      32, "ffff:ffff:0000:0000:0000:0000:0000:0000"],
+  ["2a05:7500::",      19, "ffff:ffe0:0000:0000:0000:0000:0000:0000"],
+  ["2a13:8d40::",      19, "ffff:ffe0:0000:0000:0000:0000:0000:0000"],
+  ["2a02:f0c0::",      19, "ffff:ffe0:0000:0000:0000:0000:0000:0000"],
+  ["2a03:6d00::",      32, "ffff:ffff:0000:0000:0000:0000:0000:0000"],
+  ["2a03:b640::",      32, "ffff:ffff:0000:0000:0000:0000:0000:0000"],
+  ["2a05:74c0::",      19, "ffff:ffe0:0000:0000:0000:0000:0000:0000"],
+  ["2a02:25d8::",      32, "ffff:ffff:0000:0000:0000:0000:0000:0000"],
+  ["2a0d:3344:37c0::", 54, "ffff:ffff:ffff:fc00:0000:0000:0000:0000"]
+];
+
 function isJordanIPv6(host) {
-  return (
-    /* Orange Jordan */
-    isInNet(host,"2a01:9700::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+  var hasEx = (typeof isInNetEx === "function");
+  for (var i = 0; i < JORDAN_V6_RANGES.length; i++) {
+    var r = JORDAN_V6_RANGES[i];
+    if (hasEx) {
+      if (isInNetEx(host, r[0], r[1])) return true;
+    } else {
+      if (isInNet(host, r[0], r[2])) return true;
+    }
+  }
+  return false;
+}
 
-    /* Umniah */
-    isInNet(host,"2a00:4620::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
-    isInNet(host,"2a05:7500::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
-    isInNet(host,"2a02:f0c0::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
-    isInNet(host,"2a03:6d00::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
-    isInNet(host,"2a03:b640::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
-    isInNet(host,"2a05:74c0::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
 
-    /* Zain Jordan / Fastlink */
-    isInNet(host,"2a13:8d40::","ffff:ffe0:0000:0000:0000:0000:0000:0000") ||
+/* =========================================================
+   🔗 v2.1 — JORDAN NET (LINKED CHECK)
+   الدالة الموحدة التي تربط:
+     🇯🇴 PRIMARY RESIDENTIAL (IPv4) + 🇯🇴 IPV6 RESIDENTIAL
+   ========================================================= */
 
-    /* Starlink Jordan */
-    isInNet(host,"2a0d:3344:37c0::","ffff:ffff:ffc0:0000:0000:0000:0000:0000") ||
+function isJordanNet(host) {
+  return isJordanResidential(host) || isJordanIPv6(host);
+}
 
-    /* Blink */
-    isInNet(host,"2a02:25d8::","ffff:ffff:0000:0000:0000:0000:0000:0000") ||
-
-    /* DAMAMAX */
-    isInNet(host,"2a00:18d0::","ffff:ffff:0000:0000:0000:0000:0000:0000")
-  );
+/* PUBG + IP أردني (أساسي أو IPv6) → أعلى أولوية */
+function isPUBGOnJordanNet(host, url) {
+  return isPUBG(host, url) && isJordanNet(host);
 }
 
 
 /* =========================================================
    📊 JORDAN TIER (Enhanced for PUBG)
+   🔧 v2.1: إزالة التكرار — isJordanIPv6 كانت تفحص مرتين
    ========================================================= */
 
 function regionTier(host) {
-  if (isJordanResidential(host) || isJordanSmallResidential(host) || isJordanIPv6(host)) {
-    return 3;   // Highest Jordan priority
-  }
-  if (isJordanExtended(host)) {
-    return 2;
-  }
+  if (isJordanNet(host)) return 3;   // 🔗 Primary IPv4 + IPv6 = أعلى أولوية
+  if (isJordanExtended(host) || isJordanSmallResidential(host)) return 2;
   return 1;
 }
 
@@ -245,6 +259,7 @@ function isPUBGResource(s,u) {
 
 /* =========================================================
    🧠 ULTRA PUBG CONFIDENCE ENGINE (Faster + Stronger)
+   🔗 v2.1: مربوط مع isJordanNet() — Primary IPv4 + IPv6
    ========================================================= */
 
 function getPUBGScore(host,url) {
@@ -289,6 +304,15 @@ function getPUBGScore(host,url) {
   /* Extra boost for ME / Asia / Jordan-friendly endpoints */
   if (/(me|asia|middleeast|jordan|sg|hk|sea)/.test(s + " " + u)) score += 15;
 
+  /* =======================================================
+     🔗 v2.1 — JORDAN NET LINK
+     أي إشارة PUBG + وجهة داخل شبكات الأردن السكنية
+     (Primary IPv4 أو IPv6) = دفعة قوية للنتيجة.
+     تُضاف فقط إذا وُجدت إشارة PUBG مسبقة حتى لا تُصنَّف
+     المواقع العادية الأردنية كـ PUBG.
+     ======================================================= */
+  if (score > 0 && isJordanNet(host)) score += 45;
+
   return score;
 }
 
@@ -319,14 +343,6 @@ var PUBG_LOCKED = false;   // Extra strict lock for PUBG only
    ========================================================= */
 
 function selectCore(host,url) {
-  /*
-     ULTRA STRICT RULES:
-     - Once PUBG is detected → LOCKED to JORDAN_CORE forever
-     - No more hash for PUBG traffic (eliminates jitter)
-     - All PUBG goes through Jordan residential proxy
-     - This maximizes Jordanian players + lowest consistent ping
-  */
-
   if (PUBG_LOCKED && LOCKED_CORE !== null) {
     return LOCKED_CORE;
   }
@@ -335,11 +351,20 @@ function selectCore(host,url) {
     return LOCKED_CORE;
   }
 
+  /* =======================================================
+     🔗 v2.1 — FAST PATH: PUBG + JORDAN IP (IPv4 PRIMARY / IPv6)
+     أعلى أولوية: قفل فوري على Jordan Core بدون أي حساب إضافي
+     ======================================================= */
+  if (isPUBGOnJordanNet(host,url)) {
+    PUBG_LOCKED = true;
+    LOCKED_CORE = JORDAN_CORE;
+    return LOCKED_CORE;
+  }
+
   var tier = regionTier(host);
 
   /* =======================================================
      🇯🇴 PUBG TRAFFIC → ALWAYS JORDAN CORE (No exception)
-     This is the key change for "more Jordanians + low ping + fast matchmaking"
      ======================================================= */
   if (isPUBG(host,url)) {
     PUBG_LOCKED = true;
@@ -396,6 +421,16 @@ function FindProxyForURL(url,host) {
 
   /* Early exit for empty */
   if (!host) return JORDAN_CORE;
+
+  /* =======================================================
+     🔗 v2.1 — FAST PATH: PUBG + JORDAN IP (Primary IPv4 / IPv6)
+     قفل مباشر على Jordan Core — أقصى وجود أردني
+     ======================================================= */
+  if (isPUBGOnJordanNet(host,url)) {
+    PUBG_LOCKED = true;
+    LOCKED_CORE = JORDAN_CORE;
+    return LOCKED_CORE;
+  }
 
   /* =======================================================
      🎮 PUBG — Force Jordan Core immediately
