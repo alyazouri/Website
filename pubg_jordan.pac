@@ -1,15 +1,44 @@
 /* =========================================================
    🇯🇴 JORDAN TITANIUM PAC — auto-generated
    🎮 PUBG MOBILE GLOBAL — Jordan-pure routing
-   🕒 2026-09-03 02:15  |  v2.0
-   🔗 Proxies: 0 شغّال  |  النطاقات: 127 أردنية
+   🕒 2026-09-03 02:15  |  v2.2 — كله على البروكسي، بدون DIRECT
+   🔗 Proxies: 2 شغّال  |  النطاقات: 127 أردنية
    =========================================================
-   لو ما في بروكسي أردني شغّال:
-   PUBG → DIRECT (وأنت بالأردن = مسار أردني بيور).
+   مسار كل الاتصالات (PUBG + التصفح) — بترتيب الفشل التلقائي:
+   1️⃣  PROXY 79.173.251.21:20001   (أردني — أساسي)
+   2️⃣  PROXY 86.108.11.20:443      (أردني — بديل)
+   ⛔ لا يوجد DIRECT نهائياً بالسكربت
    ========================================================= */
 
-var PUBG_CORE  = "DIRECT";
-var WEB_CORE   = "DIRECT";
+/* ====== ⚙️ إعدادات البروكسي — عدّل من هنا فقط ====== */
+
+/* نوع البروكسي:
+   "PROXY"   = HTTP/HTTPS proxy (الافتراضي)
+   "SOCKS5"  = إذا البروكسي عندك SOCKS5 غيّر هون بس */
+var PROTO = "PROXY";
+
+/* البروكسيات الأردنية — بترتيب الأولوية (الأول أساسي، الثاني بديل) */
+var JO_PROXIES = [
+  "79.173.251.21:20001",   /* 🇯🇴 أردني — ضمن 79.173.192.0/18  */
+  "86.108.11.20:443"       /* 🇯🇴 أردني — ضمن 86.108.0.0/17    */
+];
+
+/* بناء سلسلة الفشل التلقائي: proxy1; proxy2 (بدون DIRECT نهائياً) */
+function buildProxyChain(proxies) {
+  var chain = [];
+  for (var i = 0; i < proxies.length; i++) {
+    chain.push(PROTO + " " + proxies[i]);
+  }
+  return chain.join("; ");
+}
+
+/* 🎮 مسار PUBG — بروكسي أردني فقط */
+var PUBG_CORE = buildProxyChain(JO_PROXIES);
+
+/* 🌐 مسار التصفح العام — نفس البروكسي الأردني (بدون DIRECT) */
+var WEB_CORE = buildProxyChain(JO_PROXIES);
+
+/* ====== نهاية الإعدادات ====== */
 
 function isJordanResidential(host) {
   return (
@@ -254,10 +283,11 @@ function FindProxyForURL(url,host) {
   host = host || "";
   url  = url  || "";
 
-  /* 🎮 كل دومينات/مسارات PUBG العالمية → أردني */
+  /* 🎮 كل دومينات/مسارات PUBG العالمية → بروكسي أردني (فشل تلقائي بين البروكسيات فقط) */
   if (isPUBG(host,url)) {
     return PUBG_CORE;
   }
 
+  /* 🌐 أي طلب تاني (تصفح عام) → نفس البروكسي الأردني — بدون DIRECT */
   return WEB_CORE;
 }
