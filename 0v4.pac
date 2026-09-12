@@ -1,491 +1,594 @@
 /* =========================================================
-   T | JORDAN TITANIUM ULTRA
-   🎮 PUBG MOBILE — ULTIMATE RESIDENTIAL HOPPING
-   🏠 JORDAN FIBER + GSM RESIDENTIAL SUPERCHARGE
-   ⚡ LIGHTNING FAST PLAYER DISCOVERY + MATCHMAKING
-   🔥 ULTRA AGGRESSIVE PLAYER FINDING
+   T | JORDAN TITANIUM ULTIMATE MAX
+   🎮 PUBG MOBILE — GOD MODE DNS + RESIDENTIAL HOPPING
+   🏠 JORDAN FIBER + GSM ULTRA AGGRESSIVE PLAYER HUNTING
+   ⚡ NUCLEAR LEVEL DNS RESOLUTION + PLAYER DISCOVERY
+   🔥 NUCLEAR FUSION DNS + PROXY OPTIMIZATION
+   💀 DEATH STAR LEVEL PLAYER FINDING + MATCHMAKING
    ========================================================= */
 
 
 /* =========================================================
-   🌐 ULTIMATE RESIDENTIAL PROXY POOL - JORDAN NETWORKS
+   🌋 NUCLEAR REACTOR PROXY POOL - MAXIMUM POWER
    ========================================================= */
 
-// ULTIMATE HOP SEQUENCE - MAXIMUM RESIDENTIAL NETWORK COVERAGE
-var ULTRA_FIBER_A = "PROXY 86.108.0.214:80";      // Orange Jordan Fiber Premium
-var ULTRA_MOBILE_A = "PROXY 46.32.119.124:8888";   // Zain Jordan Mobile Ultra
-var ULTRA_FIBER_B = "PROXY 79.173.249.116:8080";   // Orange Jordan Fiber Turbo
-var ULTRA_MOBILE_B = "PROXY 94.142.63.254:3128";   // Zain Jordan Mobile Max
-var ULTRA_FIBER_C = "PROXY 194.165.159.254:8080";  // Orange Jordan Fiber Extreme
+// 🔥 NUCLEAR FUSION PROXIES - JORDAN RESIDENTIAL GOD MODE
+var NUCLEAR_FIBER_GOD = "PROXY 86.108.0.214:80";       // 🔥 Orange Jordan Fiber Nuclear Reactor
+var NUCLEAR_MOBILE_GOD = "PROXY 46.32.119.124:8888";    // 💀 Zain Jordan Mobile Death Star
+var NUCLEAR_FIBER_OMEGA = "PROXY 79.173.249.116:8080";  // 🌋 Orange Jordan Fiber Omega
+var NUCLEAR_MOBILE_ALPHA = "PROXY 94.142.63.254:3128";  // ⚡ Zain Jordan Alpha Strike
+var NUCLEAR_FIBER_SIGMA = "PROXY 194.165.159.254:8080"; // 🎯 Orange Jordan Sigma Force
+var NUCLEAR_MOBILE_DELTA = "PROXY 109.107.255.254:8080"; // 💣 Umniah Jordan Delta Bomb
+var NUCLEAR_FIBER_THETA = "PROXY 46.248.223.254:8080";  // 🌟 Umniah Jordan Theta Shield
 
-// ULTIMATE HOP CHAIN - 5 LAYERS OF RESIDENTIAL NETWORKS
-var ULTIMATE_HOP_CHAIN = ULTRA_FIBER_A + "; " + ULTRA_MOBILE_A + "; " + ULTRA_FIBER_B + "; " + ULTRA_MOBILE_B + "; " + ULTRA_FIBER_C;
+// 💀 DEATH STAR HOP CHAIN - 7 LAYERS OF ULTIMATE POWER
+var DEATH_STAR_CHAIN = 
+  NUCLEAR_FIBER_GOD + "; " + 
+  NUCLEAR_MOBILE_GOD + "; " + 
+  NUCLEAR_FIBER_OMEGA + "; " + 
+  NUCLEAR_MOBILE_ALPHA + "; " + 
+  NUCLEAR_FIBER_SIGMA + "; " + 
+  NUCLEAR_MOBILE_DELTA + "; " + 
+  NUCLEAR_FIBER_THETA;
 
-// AGGRESSIVE HOP CHAIN - 3 LAYERS
-var AGGRESSIVE_HOP_CHAIN = ULTRA_FIBER_A + "; " + ULTRA_MOBILE_A + "; " + ULTRA_FIBER_B;
+// 🔥 NUCLEAR WARFARE CHAIN - 5 LAYERS
+var NUCLEAR_WARFARE_CHAIN = 
+  NUCLEAR_FIBER_GOD + "; " + 
+  NUCLEAR_MOBILE_GOD + "; " + 
+  NUCLEAR_FIBER_OMEGA + "; " + 
+  NUCLEAR_MOBILE_ALPHA + "; " + 
+  NUCLEAR_FIBER_SIGMA;
 
-// STANDARD HOP CHAIN - 2 LAYERS
-var STANDARD_HOP_CHAIN = ULTRA_FIBER_A + "; " + ULTRA_MOBILE_A;
+// ⚡ LIGHTNING STRIKE CHAIN - 3 LAYERS
+var LIGHTNING_STRIKE_CHAIN = 
+  NUCLEAR_FIBER_GOD + "; " + 
+  NUCLEAR_MOBILE_GOD + "; " + 
+  NUCLEAR_FIBER_OMEGA;
 
-// EMERGENCY FALLBACK
-var EMERGENCY_CHAIN = "PROXY 85.159.217.18:80; PROXY 85.159.217.18:443; PROXY 92.253.2.100:8080";
+// 🎯 SNIPER STRIKE CHAIN - 2 LAYERS
+var SNIPER_STRIKE_CHAIN = 
+  NUCLEAR_FIBER_GOD + "; " + 
+  NUCLEAR_MOBILE_GOD;
 
 
 /* =========================================================
-   ⚡ HYPER FAST ULTRA HASH - MAXIMUM SPEED
+   💀 NUCLEAR HASH ENGINE - QUANTUM COMPUTING LEVEL
    ========================================================= */
 
-function hyperUltraHash(str) {
-  var h = 0x811c9dc5;
+function nuclearHashQuantum(str) {
+  var h1 = 0xdeadbeef;
+  var h2 = 0xfeedface;
+  var h3 = 0xcafebabe;
+  var h4 = 0x1badb002;
+  
   for (var i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h += (h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24);
+    var c = str.charCodeAt(i);
+    h1 = ((h1 << 5) + h1 + c) ^ (h2 >> 2);
+    h2 = ((h2 << 7) + h2 + c) ^ (h3 >> 3);
+    h3 = ((h3 << 11) + h3 + c) ^ (h4 >> 5);
+    h4 = ((h4 << 13) + h4 + c) ^ (h1 >> 7);
   }
-  return h >>> 0;
+  
+  // QUANTUM ENTANGLEMENT MIXING
+  var final = (h1 ^ h2 ^ h3 ^ h4) >>> 0;
+  return final;
 }
 
 
 /* =========================================================
-   🚀 ULTRA-AGGRESSIVE PUBG DETECTION ENGINE
+   🚀 PLAYER HUNTING RADAR SYSTEM - GOD MODE
    ========================================================= */
 
-function isUltraPUBGTraffic(host, url) {
+// 🔥 NUCLEAR PLAYER SIGNATURE DATABASE - EVERYTHING PUBG
+var NUCLEAR_PLAYER_SIGNATURES = [
+  // CORE PUBG SIGNATURES
+  'pubg', 'krafton', 'tencent', 'battlegrounds', 'pubgm', 'pubgmobile',
+  
+  // MATCHMAKING SIGNATURES
+  'match', 'game', 'server', 'session', 'battle', 'fight', 'combat',
+  
+  // REAL-TIME COMMUNICATION
+  'voice', 'rtc', 'voip', 'audio', 'turn', 'stun', 'sip', 'webrtc',
+  
+  // SOCIAL SIGNATURES
+  'friend', 'clan', 'guild', 'party', 'team', 'squad', 'group', 'crew',
+  
+  // GAME MODES & MAPS
+  'erangel', 'miramar', 'sanhok', 'vikendi', 'karakin', 'livik', 'deston',
+  'tdm', 'warzone', 'metro', 'payload', 'conquest', 'classic', 'royale',
+  
+  // INFRASTRUCTURE SERVICES
+  'dispatch', 'allocate', 'route', 'connect', 'join', 'enter', 'spawn',
+  
+  // PLAYER SERVICES
+  'player', 'profile', 'account', 'login', 'auth', 'signin', 'register',
+  
+  // PRESENCE & STATUS
+  'presence', 'status', 'online', 'offline', 'available', 'away',
+  
+  // TELEMTRY & ANALYTICS
+  'telemetry', 'analytics', 'stats', 'statistics', 'metric', 'data',
+  
+  // RESOURCES & ASSETS
+  'asset', 'resource', 'update', 'patch', 'download', 'dl', 'content',
+  
+  // API ENDPOINTS
+  'api', 'v1', 'v2', 'v3', 'v4', 'service', 'endpoint', 'rest',
+  
+  // NETWORK SERVICES
+  'network', 'connection', 'socket', 'websocket', 'tcp', 'udp',
+  
+  // MULTIPLAYER SERVICES
+  'multiplayer', 'mp', 'coop', 'cooperative', 'versus', 'pvp',
+  
+  // LOBBY SERVICES
+  'lobby', 'waiting', 'queue', 'ranking', 'leaderboard',
+  
+  // CHEAT PROTECTION
+  'anticheat', 'protection', 'security', 'guard', 'shield',
+  
+  // GAME ENGINE
+  'unity', 'unreal', 'engine', 'render', 'graphics',
+  
+  // STREAMING SERVICES
+  'stream', 'broadcast', 'live', 'watch', 'spectate',
+  
+  // REPLAY SERVICES
+  'replay', 'vod', 'video', 'record', 'recording',
+  
+  // IN-GAME STORE
+  'shop', 'store', 'market', 'buy', 'purchase', 'item',
+  
+  // INVENTORY SYSTEMS
+  'inventory', 'backpack', 'equipment', 'gear', 'weapon',
+  
+  // LEADERBOARDS & RANKINGS
+  'rank', 'rating', 'elo', 'mmr', 'skill', 'level', 'xp',
+  
+  // TOURNAMENT SERVICES
+  'tournament', 'event', 'competition', 'championship', 'esports',
+  
+  // SUPPORT SERVICES
+  'support', 'help', 'faq', 'ticket', 'report'
+];
+
+// 💀 ULTRA AGGRESSIVE PLAYER DETECTION MATRIX
+function nuclearPlayerDetectionMatrix(host, url) {
   var h = (host || "").toLowerCase();
   var u = (url || "").toLowerCase();
-  var combined = h + "|" + u;
+  var combined = h + "|" + u + "|" + h.replace(/\./g, "") + "|" + u.replace(/[\/\-_]/g, "");
   
-  // ULTRA AGGRESSIVE PUBG KEYWORDS - EVERYTHING PUBG RELATED
-  var ultraKeywords = [
-    // CORE PUBG
-    'pubg', 'krafton', 'tencent', 'battlegrounds',
+  var detectionScore = 0;
+  
+  // 🔥 NUCLEAR SCAN - CHECK EVERY POSSIBLE PUBG RELATION
+  for (var i = 0; i < NUCLEAR_PLAYER_SIGNATURES.length; i++) {
+    var signature = NUCLEAR_PLAYER_SIGNATURES[i];
     
-    // MATCHMAKING & GAME SERVICES
-    'match', 'game', 'server', 'session', 'player', 'battle',
+    // MULTIPLE SCAN PATTERNS
+    if (h.indexOf(signature) !== -1) detectionScore += 50;
+    if (u.indexOf(signature) !== -1) detectionScore += 30;
+    if (combined.indexOf(signature) !== -1) detectionScore += 20;
     
-    // REAL-TIME SERVICES
-    'voice', 'rtc', 'voip', 'audio', 'turn', 'stun',
-    
-    // SOCIAL & COMMUNITY
-    'friend', 'clan', 'guild', 'party', 'team', 'squad',
-    
-    // GAME MODES & MAPS
-    'erangel', 'miramar', 'sanhok', 'vikendi', 'karakin', 'livik',
-    'tdm', 'warzone', 'metro', 'payload',
-    
-    // INFRASTRUCTURE
-    'dispatch', 'allocate', 'route', 'connect', 'join',
-    
-    // SERVICES
-    'presence', 'telemetry', 'analytics', 'statistic',
-    
-    // RESOURCES
-    'asset', 'resource', 'update', 'patch', 'download',
-    
-    // API ENDPOINTS
-    'api', 'v1', 'v2', 'v3', 'service', 'endpoint'
+    // FUZZY MATCHING
+    if (h.indexOf(signature.substring(0, Math.max(3, signature.length-2))) !== -1) detectionScore += 10;
+    if (u.indexOf(signature.substring(0, Math.max(3, signature.length-2))) !== -1) detectionScore += 5;
+  }
+  
+  // 🔥 PATTERN MATCHING - ADVANCED AI STYLE
+  var patterns = [
+    /[a-z]{2,}match[a-z]{2,}/i,
+    /[a-z]{2,}game[a-z]{2,}/i,
+    /[a-z]{2,}server[a-z]{2,}/i,
+    /[a-z]{2,}player[a-z]{2,}/i,
+    /match[a-z0-9]+/i,
+    /game[a-z0-9]+/i,
+    /server[a-z0-9]+/i,
+    /player[a-z0-9]+/i
   ];
   
-  // CHECK EVERY SINGLE WORD FOR PUBG RELATED TERMS
-  for (var i = 0; i < ultraKeywords.length; i++) {
-    if (combined.indexOf(ultraKeywords[i]) !== -1) {
-      return true;
+  for (var j = 0; j < patterns.length; j++) {
+    if (patterns[j].test(combined)) {
+      detectionScore += 25;
     }
   }
   
-  // URL PATH PATTERN MATCHING
-  var pathPatterns = [
-    '/match/', '/game/', '/server/', '/session/',
-    '/api/', '/v1/', '/v2/', '/v3/',
-    '/player/', '/battle/', '/pubg/'
+  // 🔥 URL PATH ANALYSIS
+  var pathKeywords = [
+    '/api/', '/v1/', '/v2/', '/v3/', '/service/',
+    '/match/', '/game/', '/server/', '/player/',
+    '/session/', '/battle/', '/fight/',
+    '/voice/', '/rtc/', '/audio/',
+    '/friend/', '/clan/', '/team/',
+    '/asset/', '/resource/', '/update/',
+    '/telemetry/', '/analytics/', '/stats/'
   ];
   
-  for (var j = 0; j < pathPatterns.length; j++) {
-    if (u.indexOf(pathPatterns[j]) !== -1) {
-      return true;
+  for (var k = 0; k < pathKeywords.length; k++) {
+    if (u.indexOf(pathKeywords[k]) !== -1) {
+      detectionScore += 15;
     }
   }
   
-  return false;
+  // 🔥 SUBDOMAIN ANALYSIS
+  var subdomains = h.split('.');
+  for (var l = 0; l < subdomains.length; l++) {
+    var sub = subdomains[l];
+    if (sub.length > 2 && sub.match(/[a-z]{3,}/)) {
+      detectionScore += 5;
+    }
+  }
+  
+  return detectionScore;
 }
 
 
 /* =========================================================
-   🎯 PLAYER DISCOVERY SCORING SYSTEM - ULTRA SENSITIVE
+   🏠 ULTIMATE JORDAN RESIDENTIAL NETWORK DATABASE - NUCLEAR VERSION
    ========================================================= */
 
-function getPlayerDiscoveryScore(host, url) {
-  var score = 0;
-  var h = (host || "").toLowerCase();
-  var u = (url || "").toLowerCase();
-  var combined = h + "|" + u;
-  
-  // PUBG BRAND SCORING (HIGHEST)
-  if (h.indexOf('pubg') !== -1) score += 100;
-  if (h.indexOf('krafton') !== -1) score += 90;
-  if (h.indexOf('tencent') !== -1) score += 80;
-  if (h.indexOf('battleground') !== -1) score += 75;
-  
-  // MATCHMAKING SCORING (VERY HIGH)
-  if (combined.indexOf('matchmak') !== -1) score += 95;
-  if (combined.indexOf('match') !== -1) score += 70;
-  if (combined.indexOf('game') !== -1) score += 60;
-  if (combined.indexOf('server') !== -1) score += 55;
-  
-  // PLAYER SERVICES (HIGH)
-  if (combined.indexOf('player') !== -1) score += 50;
-  if (combined.indexOf('session') !== -1) score += 45;
-  if (combined.indexOf('battle') !== -1) score += 40;
-  
-  // REAL-TIME SERVICES (HIGH)
-  if (combined.indexOf('voice') !== -1) score += 45;
-  if (combined.indexOf('rtc') !== -1) score += 45;
-  if (combined.indexOf('voip') !== -1) score += 40;
-  if (combined.indexOf('audio') !== -1) score += 35;
-  
-  // SOCIAL SERVICES (MEDIUM)
-  if (combined.indexOf('friend') !== -1) score += 30;
-  if (combined.indexOf('clan') !== -1) score += 30;
-  if (combined.indexOf('guild') !== -1) score += 30;
-  if (combined.indexOf('party') !== -1) score += 25;
-  if (combined.indexOf('team') !== -1) score += 25;
-  if (combined.indexOf('squad') !== -1) score += 25;
-  
-  // MAPS & MODES (MEDIUM)
-  var maps = ['erangel', 'miramar', 'sanhok', 'vikendi', 'karakin', 'livik'];
-  for (var i = 0; i < maps.length; i++) {
-    if (combined.indexOf(maps[i]) !== -1) score += 25;
-  }
-  
-  var modes = ['tdm', 'warzone', 'metro', 'payload'];
-  for (var j = 0; j < modes.length; j++) {
-    if (combined.indexOf(modes[j]) !== -1) score += 20;
-  }
-  
-  // INFRASTRUCTURE (MEDIUM)
-  if (combined.indexOf('dispatch') !== -1) score += 25;
-  if (combined.indexOf('allocate') !== -1) score += 25;
-  if (combined.indexOf('route') !== -1) score += 20;
-  if (combined.indexOf('connect') !== -1) score += 20;
-  if (combined.indexOf('join') !== -1) score += 20;
-  
-  // SERVICES (LOW-MEDIUM)
-  if (combined.indexOf('presence') !== -1) score += 15;
-  if (combined.indexOf('telemetry') !== -1) score += 15;
-  if (combined.indexOf('analytic') !== -1) score += 15;
-  if (combined.indexOf('stat') !== -1) score += 10;
-  
-  // RESOURCES (LOW)
-  if (combined.indexOf('asset') !== -1) score += 10;
-  if (combined.indexOf('resource') !== -1) score += 10;
-  if (combined.indexOf('update') !== -1) score += 10;
-  if (combined.indexOf('patch') !== -1) score += 10;
-  if (combined.indexOf('download') !== -1) score += 5;
-  
-  // API PATTERNS (LOW)
-  if (combined.indexOf('/api/') !== -1) score += 15;
-  if (combined.indexOf('/v1/') !== -1) score += 10;
-  if (combined.indexOf('/v2/') !== -1) score += 10;
-  if (combined.indexOf('/v3/') !== -1) score += 10;
-  
-  // GENERIC GAME TERMS (VERY LOW - PREVENT FALSE NEGATIVES)
-  if (combined.indexOf('game') !== -1) score += 5;
-  if (combined.indexOf('play') !== -1) score += 3;
-  if (combined.indexOf('multiplayer') !== -1) score += 5;
-  
-  return score;
-}
-
-
-/* =========================================================
-   🏠 ULTIMATE JORDAN RESIDENTIAL NETWORK DATABASE
-   ========================================================= */
-
-// TIER 1: ULTRA-PREMIUM RESIDENTIAL (FASTEST)
-var TIER_1_NETWORKS = [
+// 💀 TIER 0: GOD MODE RESIDENTIAL (ULTRA PREMIUM)
+var TIER_0_NUCLEAR_NETWORKS = [
   "62.72.161.0/24", "62.72.162.0/24", "62.72.165.0/24", "62.72.166.0/24",
   "62.72.174.0/24", "62.72.176.0/24", "62.72.179.0/24", "62.72.180.0/24",
   "62.72.191.0/24"
 ];
 
-// TIER 2: PREMIUM FIBER RESIDENTIAL (VERY FAST)
-var TIER_2_NETWORKS = [
+// 🔥 TIER 1: NUCLEAR FIBER RESIDENTIAL (EXTREMELY FAST)
+var TIER_1_NUCLEAR_FIBER = [
   "86.108.0.0/20", "79.173.240.0/20", "194.165.128.0/18",
   "46.185.128.0/17", "92.253.0.0/17", "94.249.0.0/17"
 ];
 
-// TIER 3: STANDARD FIBER RESIDENTIAL (FAST)
-var TIER_3_NETWORKS = [
+// ⚡ TIER 2: LIGHTNING MOBILE RESIDENTIAL (VERY FAST)
+var TIER_2_LIGHTNING_MOBILE = [
   "46.32.96.0/19", "94.142.32.0/19", "188.247.64.0/19",
-  "37.202.64.0/18", "79.134.128.0/19"
-];
-
-// TIER 4: MOBILE RESIDENTIAL (GOOD COVERAGE)
-var TIER_4_NETWORKS = [
   "46.32.112.0/20", "109.107.224.0/19", "46.248.192.0/19",
-  "95.172.192.0/19", "196.202.0.0/16", "197.149.128.0/17",
-  "46.23.112.0/20", "46.248.208.0/20", "212.35.64.0/20"
+  "95.172.192.0/19", "196.202.0.0/16", "197.149.128.0/17"
 ];
 
-// TIER 5: EXTENDED RESIDENTIAL (WIDE COVERAGE)
-var TIER_5_NETWORKS = [
+// 🎯 TIER 3: SNIPER RESIDENTIAL (FAST)
+var TIER_3_SNIPER_RESIDENTIAL = [
   "213.186.160.0/19", "213.139.32.0/19", "212.34.0.0/19",
   "84.18.32.0/19", "84.18.64.0/19", "81.28.112.0/20",
   "109.237.192.0/20", "95.141.208.0/20", "91.106.96.0/20"
 ];
 
+// 🌟 TIER 4: WIDE COVERAGE RESIDENTIAL (GOOD)
+var TIER_4_WIDE_COVERAGE = [
+  "46.23.112.0/20", "46.248.208.0/20", "212.35.64.0/20",
+  "212.35.80.0/20", "46.248.0.0/17", "95.172.128.0/17"
+];
+
 
 /* =========================================================
-   🚀 NETWORK TIER CHECKER - ULTRA FAST
+   🚀 NUCLEAR NETWORK TIER DETECTOR - QUANTUM SPEED
    ========================================================= */
 
-function checkNetworkTier(ip) {
-  // CHECK EACH TIER FROM HIGHEST TO LOWEST
+function nuclearTierDetector(ip) {
+  if (!ip) return 99;
   
-  // TIER 1 - ULTRA PREMIUM
-  for (var i = 0; i < TIER_1_NETWORKS.length; i++) {
-    if (isInNet(ip, TIER_1_NETWORKS[i].split('/')[0], cidrToNetmask(TIER_1_NETWORKS[i].split('/')[1]))) {
+  // TIER 0 - GOD MODE
+  for (var i = 0; i < TIER_0_NUCLEAR_NETWORKS.length; i++) {
+    if (isInNet(ip, TIER_0_NUCLEAR_NETWORKS[i].split('/')[0], 
+                cidrToMask(TIER_0_NUCLEAR_NETWORKS[i].split('/')[1]))) {
+      return 0;
+    }
+  }
+  
+  // TIER 1 - NUCLEAR FIBER
+  for (var j = 0; j < TIER_1_NUCLEAR_FIBER.length; j++) {
+    if (isInNet(ip, TIER_1_NUCLEAR_FIBER[j].split('/')[0], 
+                cidrToMask(TIER_1_NUCLEAR_FIBER[j].split('/')[1]))) {
       return 1;
     }
   }
   
-  // TIER 2 - PREMIUM FIBER
-  for (var j = 0; j < TIER_2_NETWORKS.length; j++) {
-    if (isInNet(ip, TIER_2_NETWORKS[j].split('/')[0], cidrToNetmask(TIER_2_NETWORKS[j].split('/')[1]))) {
+  // TIER 2 - LIGHTNING MOBILE
+  for (var k = 0; k < TIER_2_LIGHTNING_MOBILE.length; k++) {
+    if (isInNet(ip, TIER_2_LIGHTNING_MOBILE[k].split('/')[0], 
+                cidrToMask(TIER_2_LIGHTNING_MOBILE[k].split('/')[1]))) {
       return 2;
     }
   }
   
-  // TIER 3 - STANDARD FIBER
-  for (var k = 0; k < TIER_3_NETWORKS.length; k++) {
-    if (isInNet(ip, TIER_3_NETWORKS[k].split('/')[0], cidrToNetmask(TIER_3_NETWORKS[k].split('/')[1]))) {
+  // TIER 3 - SNIPER RESIDENTIAL
+  for (var l = 0; l < TIER_3_SNIPER_RESIDENTIAL.length; l++) {
+    if (isInNet(ip, TIER_3_SNIPER_RESIDENTIAL[l].split('/')[0], 
+                cidrToMask(TIER_3_SNIPER_RESIDENTIAL[l].split('/')[1]))) {
       return 3;
     }
   }
   
-  // TIER 4 - MOBILE RESIDENTIAL
-  for (var l = 0; l < TIER_4_NETWORKS.length; l++) {
-    if (isInNet(ip, TIER_4_NETWORKS[l].split('/')[0], cidrToNetmask(TIER_4_NETWORKS[l].split('/')[1]))) {
+  // TIER 4 - WIDE COVERAGE
+  for (var m = 0; m < TIER_4_WIDE_COVERAGE.length; m++) {
+    if (isInNet(ip, TIER_4_WIDE_COVERAGE[m].split('/')[0], 
+                cidrToMask(TIER_4_WIDE_COVERAGE[m].split('/')[1]))) {
       return 4;
     }
   }
   
-  // TIER 5 - EXTENDED RESIDENTIAL
-  for (var m = 0; m < TIER_5_NETWORKS.length; m++) {
-    if (isInNet(ip, TIER_5_NETWORKS[m].split('/')[0], cidrToNetmask(TIER_5_NETWORKS[m].split('/')[1]))) {
-      return 5;
-    }
-  }
-  
-  return 99; // UNKNOWN
+  return 99; // UNKNOWN - NUCLEAR INTERCEPTION REQUIRED
 }
 
-// HELPER FUNCTION TO CONVERT CIDR TO NETMASK
-function cidrToNetmask(cidr) {
-  var mask = ~(Math.pow(2, 32 - parseInt(cidr)) - 1);
-  return ((mask >> 24) & 0xFF) + '.' + ((mask >> 16) & 0xFF) + '.' + ((mask >> 8) & 0xFF) + '.' + (mask & 0xFF);
+function cidrToMask(prefix) {
+  var mask = ~(Math.pow(2, 32 - parseInt(prefix)) - 1);
+  return ((mask >> 24) & 0xFF) + '.' + ((mask >> 16) & 0xFF) + '.' + 
+         ((mask >> 8) & 0xFF) + '.' + (mask & 0xFF);
 }
 
 
 /* =========================================================
-   ⚡ ULTRA-CACHE SYSTEM - LIGHTNING FAST
+   💀 ULTIMATE DNS NUCLEAR REACTOR - GOD MODE RESOLUTION
    ========================================================= */
 
-var ULTRA_CACHE = {};
-var CACHE_MAX_SIZE = 2000;
-var CACHE_HIT_COUNT = 0;
-var CACHE_MISS_COUNT = 0;
+// 🔥 NUCLEAR DNS CACHE - QUANTUM STORAGE
+var NUCLEAR_DNS_CACHE = {};
+var NUCLEAR_CACHE_SIZE = 10000; // MASSIVE CACHE
+var NUCLEAR_TTL = 600; // 10 MINUTES - LONG TERM CACHING
 
-function ultraCacheGet(key) {
-  if (ULTRA_CACHE[key]) {
-    CACHE_HIT_COUNT++;
-    return ULTRA_CACHE[key];
+function nuclearDNSCacheSet(hostname, ip, ttl) {
+  var now = new Date().getTime();
+  var expire = now + ((ttl || NUCLEAR_TTL) * 1000);
+  
+  // NUCLEAR CACHE MANAGEMENT
+  if (Object.keys(NUCLEAR_DNS_CACHE).length >= NUCLEAR_CACHE_SIZE) {
+    nuclearCacheCleanup();
   }
-  CACHE_MISS_COUNT++;
+  
+  NUCLEAR_DNS_CACHE[hostname] = {
+    ip: ip,
+    expire: expire,
+    timestamp: now,
+    access_count: 1
+  };
+}
+
+function nuclearDNSCacheGet(hostname) {
+  var now = new Date().getTime();
+  var entry = NUCLEAR_DNS_CACHE[hostname];
+  
+  if (entry && entry.expire > now) {
+    entry.access_count++;
+    return entry.ip;
+  } else if (entry) {
+    delete NUCLEAR_DNS_CACHE[hostname];
+  }
+  
   return null;
 }
 
-function ultraCacheSet(key, value) {
-  // MAINTAIN CACHE SIZE
-  if (Object.keys(ULTRA_CACHE).length >= CACHE_MAX_SIZE) {
-    ULTRA_CACHE = {}; // RESET WHEN FULL
-    CACHE_HIT_COUNT = 0;
-    CACHE_MISS_COUNT = 0;
+function nuclearCacheCleanup() {
+  var now = new Date().getTime();
+  var keys = Object.keys(NUCLEAR_DNS_CACHE);
+  
+  // REMOVE EXPIRED ENTRIES
+  for (var i = 0; i < keys.length; i++) {
+    if (NUCLEAR_DNS_CACHE[keys[i]].expire <= now) {
+      delete NUCLEAR_DNS_CACHE[keys[i]];
+    }
   }
-  ULTRA_CACHE[key] = value;
+  
+  // SMART CLEANUP - KEEP MOST ACCESSED
+  if (Object.keys(NUCLEAR_DNS_CACHE).length >= NUCLEAR_CACHE_SIZE * 0.8) {
+    var entries = [];
+    for (var key in NUCLEAR_DNS_CACHE) {
+      entries.push({
+        key: key,
+        access_count: NUCLEAR_DNS_CACHE[key].access_count,
+        timestamp: NUCLEAR_DNS_CACHE[key].timestamp
+      });
+    }
+    
+    // SORT BY ACCESS COUNT (MOST USED FIRST)
+    entries.sort(function(a, b) {
+      if (b.access_count !== a.access_count) {
+        return b.access_count - a.access_count;
+      }
+      return b.timestamp - a.timestamp;
+    });
+    
+    // REMOVE LEAST USED 30%
+    var removeCount = Math.floor(entries.length * 0.3);
+    for (var j = entries.length - removeCount; j < entries.length; j++) {
+      delete NUCLEAR_DNS_CACHE[entries[j].key];
+    }
+  }
 }
 
-
-/* =========================================================
-   🎯 ULTIMATE HOP SELECTION ENGINE - AGGRESSIVE PLAYER FINDING
-   ========================================================= */
-
-function selectUltimateHopChain(host, url) {
-  // CREATE CACHE KEY
-  var cacheKey = "hop_" + host;
-  var cached = ultraCacheGet(cacheKey);
+// 🔥 NUCLEAR DNS RESOLUTION - MULTIPLE ATTEMPTS
+function nuclearDNSResolve(hostname) {
+  // STEP 1: CHECK NUCLEAR CACHE
+  var cached = nuclearDNSCacheGet(hostname);
   if (cached) {
     return cached;
   }
   
-  // GET DESTINATION IP
-  var destIP = dnsResolve(host);
+  // STEP 2: MULTIPLE DNS ATTEMPTS
+  var attempts = 0;
+  var maxAttempts = 3;
+  var resolvedIP = null;
   
-  // IF NO DNS RESOLUTION, USE ULTIMATE HOP FOR MAXIMUM DISCOVERY
-  if (!destIP) {
-    var ultimateChain = ULTIMATE_HOP_CHAIN;
-    ultraCacheSet(cacheKey, ultimateChain);
-    return ultimateChain;
+  while (attempts < maxAttempts && !resolvedIP) {
+    try {
+      resolvedIP = dnsResolve(hostname);
+      if (resolvedIP && isValidIPv4(resolvedIP)) {
+        nuclearDNSCacheSet(hostname, resolvedIP, NUCLEAR_TTL);
+        return resolvedIP;
+      }
+    } catch (e) {
+      // DNS RESOLUTION FAILED - TRY AGAIN
+    }
+    attempts++;
   }
+  
+  return resolvedIP;
+}
+
+
+/* =========================================================
+   ⚡ PLAYER HUNTING SUPER ENGINE - NUCLEAR LEVEL
+   ========================================================= */
+
+function nuclearPlayerHunter(host, url) {
+  // 🔥 NUCLEAR PLAYER DETECTION
+  var score = nuclearPlayerDetectionMatrix(host, url);
+  
+  // GET RESOLVED IP FOR GEO-INTELLIGENCE
+  var resolvedIP = nuclearDNSResolve(host);
   
   // DETERMINE NETWORK TIER
-  var tier = checkNetworkTier(destIP);
+  var tier = nuclearTierDetector(resolvedIP);
   
-  // SELECT HOP CHAIN BASED ON TIER (MORE AGGRESSIVE FOR BETTER PLAYER FINDING)
-  var selectedChain;
-  
-  switch(tier) {
-    case 1: // ULTRA-PREMIUM - USE ULTIMATE HOP FOR MAXIMUM POWER
-      selectedChain = ULTIMATE_HOP_CHAIN;
-      break;
-      
-    case 2: // PREMIUM FIBER - USE AGGRESSIVE HOP
-      selectedChain = AGGRESSIVE_HOP_CHAIN;
-      break;
-      
-    case 3: // STANDARD FIBER - USE AGGRESSIVE HOP
-      selectedChain = AGGRESSIVE_HOP_CHAIN;
-      break;
-      
-    case 4: // MOBILE RESIDENTIAL - USE STANDARD HOP
-      selectedChain = STANDARD_HOP_CHAIN;
-      break;
-      
-    case 5: // EXTENDED RESIDENTIAL - USE STANDARD HOP
-      selectedChain = STANDARD_HOP_CHAIN;
-      break;
-      
-    default: // UNKNOWN - USE ULTIMATE HOP FOR MAXIMUM PLAYER DISCOVERY
-      selectedChain = ULTIMATE_HOP_CHAIN;
+  // 🔥 NUCLEAR PLAYER HUNTING ALGORITHM
+  if (score >= 80) {
+    // GOD MODE PLAYER DETECTED - USE DEATH STAR CHAIN
+    return DEATH_STAR_CHAIN;
   }
   
-  // CACHE THE RESULT
-  ultraCacheSet(cacheKey, selectedChain);
-  return selectedChain;
-}
-
-
-/* =========================================================
-   🚀 PLAYER OPTIMIZATION SUPER ENGINE
-   ========================================================= */
-
-function optimizePlayerExperience(host, url) {
-  // CREATE CACHE KEY
-  var cacheKey = "opt_" + host;
-  var cached = ultraCacheGet(cacheKey);
-  if (cached) {
-    return cached;
+  if (score >= 60) {
+    // NUCLEAR LEVEL PLAYER - USE NUCLEAR WARFARE CHAIN
+    return NUCLEAR_WARFARE_CHAIN;
   }
   
-  // ULTRA-AGGRESSIVE PUBG DETECTION
-  if (isUltraPUBGTraffic(host, url)) {
-    var hopChain = selectUltimateHopChain(host, url);
-    ultraCacheSet(cacheKey, hopChain);
-    return hopChain;
+  if (score >= 40) {
+    // HIGH LEVEL PLAYER - USE LIGHTNING STRIKE CHAIN
+    return LIGHTNING_STRIKE_CHAIN;
   }
   
-  // SCORE-BASED DETECTION
-  var score = getPlayerDiscoveryScore(host, url);
-  
-  // VERY AGGRESSIVE THRESHOLD - EVEN LOW SCORES GET RESIDENTIAL HOPPING
-  if (score >= 15) { // LOWERED FROM 20 FOR BETTER PLAYER FINDING
-    var aggressiveChain = selectUltimateHopChain(host, url);
-    ultraCacheSet(cacheKey, aggressiveChain);
-    return aggressiveChain;
+  if (score >= 20) {
+    // MODERATE PLAYER - USE SNIPER STRIKE CHAIN
+    return SNIPER_STRIKE_CHAIN;
   }
   
-  // MODERATE SCORE - STILL USE RESIDENTIAL FOR BETTER DISCOVERY
   if (score >= 5) {
-    var moderateChain = AGGRESSIVE_HOP_CHAIN;
-    ultraCacheSet(cacheKey, moderateChain);
-    return moderateChain;
+    // LOW LEVEL PLAYER - USE SNIPER CHAIN FOR BETTER FINDING
+    return SNIPER_STRIKE_CHAIN;
   }
   
-  // LOW SCORE - BUT STILL USE RESIDENTIAL HOPPING FOR PLAYER DISCOVERY
-  var lowChain = STANDARD_HOP_CHAIN;
-  ultraCacheSet(cacheKey, lowChain);
-  return lowChain;
-}
-
-
-/* =========================================================
-   🔥 ULTIMATE PLAYER DISCOVERY MODE
-   ========================================================= */
-
-function ultimatePlayerDiscoveryMode(host, url) {
-  // ALWAYS USE RESIDENTIAL HOPPING FOR BETTER PLAYER FINDING
-  return optimizePlayerExperience(host, url);
-}
-
-
-/* =========================================================
-   🌟 STATISTICS TRACKING (INTERNAL)
-   ========================================================= */
-
-var REQUEST_COUNT = 0;
-var PUBG_REQUEST_COUNT = 0;
-var RESIDENTIAL_HOP_COUNT = 0;
-
-function trackStats(isPUBG) {
-  REQUEST_COUNT++;
-  if (isPUBG) {
-    PUBG_REQUEST_COUNT++;
+  // NO PLAYER DETECTED - BUT STILL USE RESIDENTIAL FOR BETTER DISCOVERY
+  // BASED ON NETWORK TIER
+  switch(tier) {
+    case 0: // GOD MODE NETWORK
+      return DEATH_STAR_CHAIN;
+    case 1: // NUCLEAR FIBER
+      return NUCLEAR_WARFARE_CHAIN;
+    case 2: // LIGHTNING MOBILE
+      return LIGHTNING_STRIKE_CHAIN;
+    case 3: // SNIPER RESIDENTIAL
+      return SNIPER_STRIKE_CHAIN;
+    case 4: // WIDE COVERAGE
+      return SNIPER_STRIKE_CHAIN;
+    default: // UNKNOWN - MAXIMUM POWER
+      return DEATH_STAR_CHAIN;
   }
-  // STATS ARE INTERNAL - NOT EXPOSED FOR PRIVACY
 }
 
 
 /* =========================================================
-   🚀 MAIN PAC ROUTING ENGINE - ULTIMATE VERSION
+   🎯 VALIDATION & SECURITY - NUCLEAR LEVEL
+   ========================================================= */
+
+function isValidIPv4(ip) {
+  if (!ip || typeof ip !== 'string') return false;
+  
+  var parts = ip.split('.');
+  if (parts.length !== 4) return false;
+  
+  for (var i = 0; i < parts.length; i++) {
+    var num = parseInt(parts[i]);
+    if (isNaN(num) || num < 0 || num > 255) return false;
+    // PREVENT OCTAL AND HEX INTERPRETATION
+    if (parts[i].length > 1 && parts[i][0] === '0' && parts[i].length > 1) return false;
+  }
+  
+  // BLOCK BLACKLISTED IPS
+  var blacklist = [
+    "0.0.0.0", "255.255.255.255",
+    "127.0.0.1"
+  ];
+  
+  if (blacklist.indexOf(ip) !== -1) return false;
+  
+  return true;
+}
+
+function isPrivateIPv4(ip) {
+  if (!isValidIPv4(ip)) return true; // INVALID IPS ARE TREATED AS PRIVATE
+  
+  return (
+    isInNet(ip, "127.0.0.0", "255.0.0.0") ||    // LOOPBACK
+    isInNet(ip, "10.0.0.0", "255.0.0.0") ||     // CLASS A
+    isInNet(ip, "172.16.0.0", "255.240.0.0") || // CLASS B
+    isInNet(ip, "192.168.0.0", "255.255.0.0") || // CLASS C
+    isInNet(ip, "169.254.0.0", "255.255.0.0")   // LINK-LOCAL
+  );
+}
+
+
+/* =========================================================
+   💀 ULTIMATE NUCLEAR PAC ENGINE - MAXIMUM POWER
    ========================================================= */
 
 function FindProxyForURL(url, host) {
   
-  // SAFETY CHECKS
-  if (!host || !url) {
-    return EMERGENCY_CHAIN;
-  }
-  
-  // NORMALIZE INPUTS
-  host = host.toLowerCase().trim();
-  url = url.toLowerCase().trim();
-  
-  // EXCLUDE LOCAL AND INVALID HOSTS
-  if (isPlainHostName(host) || 
-      host.indexOf('.') === -1 || 
-      host === 'localhost' ||
-      host === '127.0.0.1' ||
-      host.match(/^\d+\.\d+\.\d+\.\d+$/) === null && host.indexOf('.') === -1) {
+  // 🔥 SAFETY FIRST - NUCLEAR PROTOCOL
+  if (!host || typeof host !== 'string' || host.length === 0) {
     return "DIRECT";
   }
   
-  // ULTIMATE PLAYER DISCOVERY AND RESIDENTIAL HOPPING
-  var result = ultimatePlayerDiscoveryMode(host, url);
+  // 🔥 NORMALIZE INPUTS - GOD MODE CLEANING
+  var cleanHost = host.trim().toLowerCase();
+  var cleanUrl = (url || "").trim().toLowerCase();
   
-  // TRACK FOR INTERNAL STATISTICS
-  var isPUBG = getPlayerDiscoveryScore(host, url) >= 15;
-  trackStats(isPUBG);
+  // 🔥 EXCLUDE LOCAL TRAFFIC - NUCLEAR FILTER
+  if (isPlainHostName(cleanHost) || 
+      cleanHost.indexOf('.') === -1 || 
+      isPrivateIPv4(cleanHost) ||
+      cleanHost === 'localhost' ||
+      cleanHost === '127.0.0.1') {
+    return "DIRECT";
+  }
   
-  return result;
+  // 🔥 NUCLEAR PLAYER HUNTING ENGINE - ACTIVATE!
+  try {
+    var nuclearResult = nuclearPlayerHunter(cleanHost, cleanUrl);
+    return nuclearResult;
+  } catch (e) {
+    // 🔥 EMERGENCY NUCLEAR PROTOCOL
+    return DEATH_STAR_CHAIN;
+  }
+  
+  // 🔥 FINAL NUCLEAR BACKUP
+  return DEATH_STAR_CHAIN;
 }
 
 
 /* =========================================================
-   🛡️ EMERGENCY SAFETY NET
+   🌋 EMERGENCY NUCLEAR SAFETY SYSTEM
    ========================================================= */
 
-// FINAL SAFETY CHECK - IF EVERYTHING FAILS
+// FINAL SAFETY NET - ENSURE FUNCTION EXISTS
 if (typeof FindProxyForURL !== 'function') {
   function FindProxyForURL(url, host) {
-    return EMERGENCY_CHAIN;
+    return DEATH_STAR_CHAIN;
+  }
+}
+
+
+/* =========================================================
+   💀 NUCLEAR WARFARE STATISTICS (INTERNAL MONITORING)
+   ========================================================= */
+
+var NUCLEAR_STATS = {
+  requests: 0,
+  player_detections: 0,
+  cache_hits: 0,
+  dns_resolves: 0,
+  nuclear_interceptions: 0
+};
+
+function nuclearStatsIncrement(counter) {
+  if (NUCLEAR_STATS[counter] !== undefined) {
+    NUCLEAR_STATS[counter]++;
   }
 }
