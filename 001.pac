@@ -11,9 +11,9 @@
    🌐 PROXY DEFINITIONS
    ========================================================= */
 
-var PROXY_A = "PROXY 176.29.199.164:80";
-var PROXY_B = "PROXY 176.29.176.201:10010";
-var PROXY_C = "PROXY 176.29.176.197:20001";
+var PROXY_A = "PROXY 82.212.92.112:443";
+var PROXY_B = "PROXY 149.200.136.6:443";
+var PROXY_C = "PROXY 188.247.66.133:443";
 
 
 /* =========================================================
@@ -47,9 +47,6 @@ function ultraHash(str) {
 function isJordanResidential(host) {
 
   return (
-    /* /20 Networks (Smallest / Most Specific) */
-    isInNet(host, "37.220.112.0", "255.255.240.0") ||
-
     /* /19 Networks (Medium) */
     isInNet(host, "46.32.96.0", "255.255.224.0") ||
     isInNet(host, "46.248.192.0", "255.255.224.0") ||
